@@ -15,6 +15,56 @@
 					<div class="swiper-pagination"></div>
 				</div>
 			</div>
+			<ul class="listNav">
+				<li>
+					<a href="">
+						<img src="/static/img/huwai.png"/>
+						<span>户外</span>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="/static/img/xiangbao.png"/>
+						<span>箱包</span>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="/static/img/fuzhuang.png"/>
+						<span>服装</span>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="/static/img/jiadian.png"/>
+						<span>家电</span>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="/static/img/diannao.png"/>
+						<span>电脑</span>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="/static/img/shuma.png"/>
+						<span>数码</span>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="/static/img/shouji.png"/>
+						<span>手机</span>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="/static/img/quanbu.png"/>
+						<span>全部</span>
+					</a>
+				</li>
+			</ul>
 		</mt-loadmore>
 	</div>
 
@@ -81,6 +131,32 @@
 			.swiper-container{
 				width: 100%;
 				height: 100%;
+			}
+		}
+		.listNav{
+			display: flex;
+			width: 100%;
+			flex-wrap: wrap;
+			margin-top: R(20px);
+			li{
+				width: 25%;
+				height: R(135px);
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				margin-bottom: R(24px);
+				a{
+					width: R(102px);
+					height: 100%;
+					display: flex;
+					flex-direction: column;
+					img{
+						width: 100%;
+					}
+					span{
+						font-size: R(30px);
+					}
+				}
 			}
 		}
 	}
