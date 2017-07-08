@@ -6,10 +6,10 @@
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-							swip1
+							<img src="/static/img/default_banner_1.jpg" />
 						</div>
 						<div class="swiper-slide">
-							swip2
+							<img src="/static/img/default_banner_2.jpg" />
 						</div>
 					</div>
 					<div class="swiper-pagination"></div>
@@ -81,7 +81,6 @@
 			.swiper-container{
 				width: 100%;
 				height: 100%;
-				background:red
 			}
 		}
 	}
