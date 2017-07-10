@@ -26,7 +26,11 @@ const state = {
   	route:""//路由
   }],//头部参数
   headerIsVisible:true,
+<<<<<<< HEAD
   navIsVisible:true,
+=======
+  navIsVisible:true
+>>>>>>> xfzy
 }
 
 
