@@ -1,10 +1,10 @@
 <template>
  	<div id="app">
- 		<TopHeader v-show="headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader>
+ 		<!-- <TopHeader v-show="headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader> -->
  		<!--<transition enter-active-class="animated slideInRight" leave-active-class="animated">-->
  		<router-view></router-view>
  		<!--</transition>-->
- 		<FooterNav v-show="navIsVisible"></FooterNav>
+ 		<!-- <FooterNav v-show="navIsVisible"></FooterNav> -->
  	</div>
 </template>
 <!--<transition enter-active-class="animated slideInRight" leave-active-class="animated slideInLeft">-->
@@ -46,16 +46,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#app{
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-}
-#wrapper{
-	width: 100%;
-	flex: 1;
-	overflow-y:auto;
-}
+#app {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	
+	#wrapper {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+	}
+
 </style>

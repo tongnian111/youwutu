@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 /*****************首页引入开始**********************/
 import Default from '@/components/default/Default';
 
@@ -10,6 +11,10 @@ import Default from '@/components/default/Default';
 import Integral from '@/components/integral/Integral';
 import PublicData from '@/components/integral/comps/PublicData';
 import IntegralContents from '@/components/integral/comps/Contents';
+import Person from '@/components/integral/comps/Person';
+import Jifen from '@/components/integral/comps/Jifen';
+import Tiyan from '@/components/integral/comps/Tiyan';
+import Dingdan from '@/components/integral/comps/Dingdan';
 
 /*****************积分引入结束**********************/
 
@@ -85,30 +90,36 @@ export default new Router({
       name: 'Integral',
       component: Integral,
       children:[
-
-        {
+          {
           path: '',
           name: 'IntegralContents',
           component: IntegralContents
-        },
-        {
-          path: 'publicData',
-          name: 'PublicData',
-          component: PublicData
-        },
-      	
-
-      	{
-						path: '',
-						name: 'IntegralContents',
-						component: IntegralContents
-				},
-      	{
-      		path: 'publicData',
-					name: 'PublicData',
-					component: PublicData
-      	}
-
+          },
+          {
+            path: 'publicData',
+            name: 'PublicData',
+            component: PublicData
+          },
+          {
+            path: 'person',
+            name: 'Person',
+            component: Person
+          },
+          {
+            path: 'jifen',
+            name: 'Jifen',
+            component: Jifen
+          },
+        	{
+  						path: 'tiyan',
+  						name: 'Tiyan',
+  						component: Tiyan
+  				},
+        	{
+        		path: 'dingdan',
+  					name: 'Dingdan',
+  					component: Dingdan
+        	}
       ]
     },{
       path: '/search',//搜索
