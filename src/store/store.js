@@ -25,6 +25,8 @@ const state = {
   	ev:"",//事件
   	route:""//路由
   }],//头部参数
+  headerIsVisible:true,
+  navIsVisible:true,
 }
 
 

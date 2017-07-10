@@ -3,4 +3,7 @@ export const actions = {
 	footerNavIndex: ({ commit },{navIndex}) =>{
 		commit('footerNavIndex',{navIndex})
 	},
+	headerInfo:({ commit },{data}) =>{
+		commit('headerInfo',{data})
+	}
 }
