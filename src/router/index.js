@@ -3,7 +3,8 @@ import Router from 'vue-router'
 
 /*****************首页引入开始**********************/
 import Default from '@/components/default/Default';
-
+import DefaultContents from '@/components/default/comps/Contents';
+import DefaultPhone from '@/components/default/comps/Phone';
 
 /*****************首页引入结束**********************/
 
@@ -39,101 +40,107 @@ import Search from '@/components/public/Search';
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Default',
-      component: Default
-    },{
-      path: '/my',
-      name: 'My',
-      component: My,
-      children: [
-      		{
-						path: '',
-						name: 'MyContents',
-						component: MyContents
-					},
-      		{
-						path: 'qrcode',
-						name: 'Qrcode',
-						component: Qrcode
-					},{
-			      path: 'register',
-			      name: 'Register',
-			      component: Register
-			    },{
-			      path: 'login',
-			      name: 'Login',
-			      component: Login
-			    }
-      ]
-    },{
-      path: '/life',
-      name: 'Life',
-      component: Life,
-      children:[
-      		{
-						path: '',
-						name: 'LifeContents',
-						component: LifeContents
-					},
-      		{
-      			path: 'release',
-						name: 'Release',
-						component: Release
-      		}
-      		
-      ]
-    },{
-      path: '/integral',//积分主页
-      name: 'Integral',
-      component: Integral,
-      children:[
-        {
-          path: '',
-          name: 'IntegralContents',
-          component: IntegralContents
-        },
-        {
-          path: 'publicData',
-          name: 'PublicData',
-          component: PublicData
-        },{
-          path: '',
-          name: 'IntegralContents',
-          component: IntegralContents
-          },
-          {
-            path: 'publicData',
-            name: 'PublicData',
-            component: PublicData
-          },
-          {
-            path: 'person',
-            name: 'Person',
-            component: Person
-          },
-          {
-            path: 'jifen',
-            name: 'Jifen',
-            component: Jifen
-          },
-        	{
-  						path: 'tiyan',
-  						name: 'Tiyan',
-  						component: Tiyan
-  				},
-        	{
-        		path: 'dingdan',
-  					name: 'Dingdan',
-  					component: Dingdan
-        	}
-      ]
-    },{
-      path: '/search',//搜索
-      name: 'Search',
-      component: Search
-    }
-  ]
+	routes: [{
+		path: '/',
+		name: 'Default',
+		component: Default,
+		children: [{
+				path: '',
+				name: 'DefaultContents',
+				component: DefaultContents
+			},
+			{
+				path: 'phone',
+				name: 'DefaultPhone',
+				component: DefaultPhone
+			}
+		]
+	}, {
+		path: '/my',
+		name: 'My',
+		component: My,
+		children: [{
+				path: '',
+				name: 'MyContents',
+				component: MyContents
+			},
+			{
+				path: 'qrcode',
+				name: 'Qrcode',
+				component: Qrcode
+			}, {
+				path: 'register',
+				name: 'Register',
+				component: Register
+			}, {
+				path: 'login',
+				name: 'Login',
+				component: Login
+			}
+		]
+	}, {
+		path: '/life',
+		name: 'Life',
+		component: Life,
+		children: [{
+				path: '',
+				name: 'LifeContents',
+				component: LifeContents
+			},
+			{
+				path: 'release',
+				name: 'Release',
+				component: Release
+			}
+
+		]
+	}, {
+		path: '/integral', //积分主页
+		name: 'Integral',
+		component: Integral,
+		children: [{
+				path: '',
+				name: 'IntegralContents',
+				component: IntegralContents
+			},
+			{
+				path: 'publicData',
+				name: 'PublicData',
+				component: PublicData
+			}, {
+				path: '',
+				name: 'IntegralContents',
+				component: IntegralContents
+			},
+			{
+				path: 'publicData',
+				name: 'PublicData',
+				component: PublicData
+			},
+			{
+				path: 'person',
+				name: 'Person',
+				component: Person
+			},
+			{
+				path: 'jifen',
+				name: 'Jifen',
+				component: Jifen
+			},
+			{
+				path: 'tiyan',
+				name: 'Tiyan',
+				component: Tiyan
+			},
+			{
+				path: 'dingdan',
+				name: 'Dingdan',
+				component: Dingdan
+			}
+		]
+	}, {
+		path: '/search', //搜索
+		name: 'Search',
+		component: Search
+	}]
 })

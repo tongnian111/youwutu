@@ -41,6 +41,8 @@ $ui-width:720px;
     @return $px/$ui-width*7.2rem;
 }
 .login{
+	flex: 1;
+	overflow-y: auto;
   padding: R(82px) R(32px) R(0px) R(32px);
   .zhang{
     height: R(81px);
@@ -53,8 +55,6 @@ $ui-width:720px;
       outline: none;
       border: 0;
       border-left:R(4px) solid #ccc;
-      /*height: R(81px);
-      line-height: R(81px);*/
       margin-left: R(34px);
       width: R(500px);
     }

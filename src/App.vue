@@ -1,10 +1,6 @@
 <template>
 	<div id="app">
-		<!-- <TopHeader v-show="headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader> -->
-		<!--<transition enter-active-class="animated slideInRight" leave-active-class="animated">-->
 		<router-view></router-view>
-		<!--</transition>-->
-		<!-- <FooterNav v-show="navIsVisible"></FooterNav> -->
 	</div>
 </template>
 <!--<transition enter-active-class="animated slideInRight" leave-active-class="animated slideInLeft">-->

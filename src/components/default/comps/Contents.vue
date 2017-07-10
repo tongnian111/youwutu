@@ -25,7 +25,7 @@
 			</div>
 			<ul class="listNav">
 				<li>
-					<a href="">
+					<a href="#/phone">
 						<img src="/static/img/shouji.png" />
 						<span>手机</span>
 					</a>
@@ -122,7 +122,7 @@
 				</li>
 				<li>
 					<a>
-						<img src="/static/img/default_wallet_1.png" />
+						<img src="/static/img/default_wallet_2.png" />
 					</a>
 					<div class="discount_price">
 						￥599.00
@@ -130,7 +130,7 @@
 				</li>
 				<li>
 					<a>
-						<img src="/static/img/default_wallet_1.png" />
+						<img src="/static/img/default_wallet_3.png" />
 					</a>
 					<div class="discount_price">
 						￥899.00
