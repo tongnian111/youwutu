@@ -79,6 +79,65 @@
 					<img src="/static/img/default_banner_1.png" />
 				</a>
 			</div>
+			<!---折扣--->
+			<ul class="discount_list">
+				<li>
+					<a>
+						<img src="/static/img/default_erji_1.png" />
+					</a>
+					<div class="discount_price">
+						3折起
+					</div>
+				</li>
+				<li>
+					<a>
+						<img src="/static/img/default_yinxiang_1.png" />
+					</a>
+					<div class="discount_price">
+						3折起
+					</div>
+				</li>
+				<li>
+					<a>
+						<img src="/static/img/default_xiangbao1.png" />
+					</a>
+					<div class="discount_price">
+						3折起
+					</div>
+				</li>
+			</ul>
+			<div class="jingxuan">
+				<a>
+					<img src="/static/img/default_jingxuan_1.png" />
+				</a>
+			</div>
+			<!---精选--->
+			<ul class="selected_list">
+				<li>
+					<a>
+						<img src="/static/img/default_wallet_1.png" />
+					</a>
+					<div class="discount_price">
+						￥259.00
+					</div>
+				</li>
+				<li>
+					<a>
+						<img src="/static/img/default_wallet_1.png" />
+					</a>
+					<div class="discount_price">
+						￥599.00
+					</div>
+				</li>
+				<li>
+					<a>
+						<img src="/static/img/default_wallet_1.png" />
+					</a>
+					<div class="discount_price">
+						￥899.00
+					</div>
+				</li>
+			</ul>
 		</mt-loadmore>
 	</div>
 
@@ -181,7 +240,7 @@
 				}
 			}
 		}
-		.banner {
+		.banner,.jingxuan{
 			width: 100%;
 			height: R(362px);
 			a {
@@ -190,6 +249,28 @@
 				height: 100%;
 				img {
 					width: 100%;
+				}
+			}
+		}
+		.discount_list,.selected_list{
+			display: flex;
+			margin-top: R(20px);
+			li {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				height: R(300px);
+				img {
+					width: R(220px);
+					height: R(220px);
+					border: R(2px) solid #E6E9ED;
+				}
+				div.discount_price {
+					line-height: R(64px);
+					text-align: center;
+					font-size: R(30px);
+					color: #FC7154;
 				}
 			}
 		}

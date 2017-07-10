@@ -85,7 +85,6 @@ export default new Router({
       name: 'Integral',
       component: Integral,
       children:[
-
         {
           path: '',
           name: 'IntegralContents',
@@ -95,20 +94,7 @@ export default new Router({
           path: 'publicData',
           name: 'PublicData',
           component: PublicData
-        },
-      	
-
-      	{
-						path: '',
-						name: 'IntegralContents',
-						component: IntegralContents
-				},
-      	{
-      		path: 'publicData',
-					name: 'PublicData',
-					component: PublicData
-      	}
-
+        }
       ]
     },{
       path: '/search',//搜索
