@@ -27,8 +27,8 @@
 			<ul class="listNav">
 				<li>
 					<a href="">
-						<img src="/static/img/huwai.png" />
-						<span>户外</span>
+						<img src="/static/img/shouji.png" />
+						<span>手机</span>
 					</a>
 				</li>
 				<li>
@@ -63,8 +63,8 @@
 				</li>
 				<li>
 					<a href="">
-						<img src="/static/img/shouji.png" />
-						<span>手机</span>
+						<img src="/static/img/huwai.png" />
+						<span>户外</span>
 					</a>
 				</li>
 				<li>
