@@ -1,11 +1,11 @@
 <template>
 <<<<<<< HEAD
 	<div id="app">
-		<TopHeader v-show="$store.state.headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader>
+		<!--<TopHeader v-show="$store.state.headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader>-->
 		<!--<transition enter-active-class="animated slideInRight" leave-active-class="animated">-->
 		<router-view></router-view>
 		<!--</transition>-->
-		<FooterNav v-show="$store.state.navIsVisible"></FooterNav>
+		<!--<FooterNav v-show="$store.state.navIsVisible"></FooterNav>-->
 	</div>
 =======
  	<div id="app">
@@ -139,6 +139,7 @@
 	#app {
 		width: 100%;
 		height: 100%;
+<<<<<<< HEAD
 		display: flex;
 		flex-direction: column;
 =======
@@ -146,13 +147,21 @@
 		width: 100%;
 		height: 100%;
 >>>>>>> xfzy
+=======
+>>>>>>> tn
 		overflow: hidden;
 	}
 	
 	#wrapper {
 		width: 100%;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		flex: 1;
+=======
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+>>>>>>> tn
 		overflow-y: auto;
 	}
 </style>
