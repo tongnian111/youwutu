@@ -1,16 +1,22 @@
 <template>
 	<div id="wrapper" class="default">
+		<TopHeader v-show="$store.state.headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader>
 		<Contents></Contents>
+		<FooterNav v-show="$store.state.navIsVisible"></FooterNav>
 	</div>
 </template>
 
 <script>
 	import { mapGetters, mapActions } from 'vuex';
+	import TopHeader from "../../components/public/TopHeader";
+	import FooterNav from "../../components/public/FooterNav";
 	import Contents from "./comps/Contents";
 	export default {
 		name: 'default',
 		components: {
-			Contents
+			TopHeader,
+			Contents,
+			FooterNav
 		},
 		data() {
 			return {

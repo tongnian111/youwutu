@@ -1,10 +1,10 @@
 <template>
 	<div id="app">
-		<TopHeader v-show="$store.state.headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader>
+		<!--<TopHeader v-show="$store.state.headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader>-->
 		<!--<transition enter-active-class="animated slideInRight" leave-active-class="animated">-->
 		<router-view></router-view>
 		<!--</transition>-->
-		<FooterNav v-show="$store.state.navIsVisible"></FooterNav>
+		<!--<FooterNav v-show="$store.state.navIsVisible"></FooterNav>-->
 	</div>
 </template>
 <!--<transition enter-active-class="animated slideInRight" leave-active-class="animated slideInLeft">-->
@@ -128,14 +128,14 @@
 	#app {
 		width: 100%;
 		height: 100%;
-		display: flex;
-		flex-direction: column;
 		overflow: hidden;
 	}
 	
 	#wrapper {
 		width: 100%;
-		flex: 1;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
 		overflow-y: auto;
 	}
 </style>
