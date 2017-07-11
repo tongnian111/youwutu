@@ -1,0 +1,51 @@
+<!--
+	作者：修朋飞  | 张哲  | 冯紫洋
+	时间：2016-07-22
+	描述：优物兔
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>优物兔</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="shortcut icon" href="/static/img/logo.png">
+		<link rel="stylesheet" type="text/css" href="static/css/swiper-3.4.2.min.css">
+		<script type="text/javascript" src="static/libs/swiper-3.4.2.min.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
+		<!-- 引入组件库 -->
+		<script src="https://unpkg.com/mint-ui@1/lib/index.js"></script>
+		<!----百度定位----->
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=W8dY1Gi259GDk5Ex7rcjM7LWz4CGo5sn"></script>
+		<link rel="stylesheet" type="text/css" href="/static/font/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/swiper.css"/>
+		<script type="text/javascript" src="static/libs/zepto.js"></script>
+		<script src="static/libs/event.js"></script>
+		<script type="text/javascript" src="/static/libs/touch.js"></script>
+		<script type="text/javascript" src="/static/js/swiper.js" ></script>
+		<script>
+			var htmlTag = document.getElementsByTagName('html')[0];
+			var clientWidth;
+
+			function setHtmlSize() {
+				clientWidth = document.documentElement.clientWidth;
+				if(clientWidth > 720) {
+					htmlTag.style.fontSize = 720 / 7.2 + 'px';
+				} else {
+					htmlTag.style.fontSize = clientWidth / 7.2 + 'px';
+				}
+			}
+			setHtmlSize();
+			window.onresize = function(){
+				setHtmlSize();
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="app"></div>
+	</body>
+
+</html>
