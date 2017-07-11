@@ -6,17 +6,17 @@
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
 							<a>
-								<img src="/static/img/default_banner_1.png" />
+								<img src="http://119.29.101.67/youwutu/img/default_banner_1.png" />
 							</a>
 						</div>
 						<div class="swiper-slide">
 							<a>
-								<img src="/static/img/default_banner_2.jpg" />
+								<img src="http://119.29.101.67/youwutu/img/default_banner_2.jpg" />
 							</a>
 						</div>
 						<div class="swiper-slide">
 							<a>
-								<img src="/static/img/default_banner_3.jpg" />
+								<img src="http://119.29.101.67/youwutu/img/default_banner_3.jpg" />
 							</a>
 						</div>
 					</div>
@@ -25,64 +25,64 @@
 			</div>
 			<ul class="listNav">
 				<li>
-					<a href="">
-						<img src="/static/img/shouji.png" />
+					<a href="#/phone">
+						<img src="http://119.29.101.67/youwutu/img/shouji.png" />
 						<span>手机</span>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<img src="/static/img/xiangbao.png" />
+						<img src="http://119.29.101.67/youwutu/img/xiangbao.png" />
 						<span>箱包</span>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<img src="/static/img/fuzhuang.png" />
+						<img src="http://119.29.101.67/youwutu/img/fuzhuang.png" />
 						<span>服装</span>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<img src="/static/img/jiadian.png" />
+						<img src="http://119.29.101.67/youwutu/img/jiadian.png" />
 						<span>家电</span>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<img src="/static/img/diannao.png" />
+						<img src="http://119.29.101.67/youwutu/img/diannao.png" />
 						<span>电脑</span>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<img src="/static/img/shuma.png" />
+						<img src="http://119.29.101.67/youwutu/img/shuma.png" />
 						<span>数码</span>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<img src="/static/img/huwai.png" />
+						<img src="http://119.29.101.67/youwutu/img/huwai.png" />
 						<span>户外</span>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<img src="/static/img/quanbu.png" />
+						<img src="http://119.29.101.67/youwutu/img/quanbu.png" />
 						<span>全部</span>
 					</a>
 				</li>
 			</ul>
 			<div class="banner">
 				<a>
-					<img src="/static/img/default_banner_1.png" />
+					<img src="http://119.29.101.67/youwutu/img/default_banner_1.png" />
 				</a>
 			</div>
 			<!---折扣--->
 			<ul class="discount_list">
 				<li>
 					<a>
-						<img src="/static/img/default_erji_1.png" />
+						<img src="http://119.29.101.67/youwutu/img/default_erji_1.png" />
 					</a>
 					<div class="discount_price">
 						3折起
@@ -90,7 +90,7 @@
 				</li>
 				<li>
 					<a>
-						<img src="/static/img/default_yinxiang_1.png" />
+						<img src="http://119.29.101.67/youwutu/img/default_yinxiang_1.png" />
 					</a>
 					<div class="discount_price">
 						3折起
@@ -98,7 +98,7 @@
 				</li>
 				<li>
 					<a>
-						<img src="/static/img/default_xiangbao1.png" />
+						<img src="http://119.29.101.67/youwutu/img/default_xiangbao1.png" />
 					</a>
 					<div class="discount_price">
 						3折起
@@ -107,14 +107,18 @@
 			</ul>
 			<div class="jingxuan">
 				<a>
+<<<<<<< HEAD
 					<img src="/static/img/default_jingxuan_1.png" />
+=======
+					<img src="http://119.29.101.67/youwutu/img/default_jingxuan_1.png" />
+>>>>>>> 63da0d448c0b8bbc0813d016d13d3908dbc8cd9c
 				</a>
 			</div>
 			<!---精选--->
 			<ul class="selected_list">
 				<li>
 					<a>
-						<img src="/static/img/default_wallet_1.png" />
+						<img src="http://119.29.101.67/youwutu/img/default_wallet_1.png" />
 					</a>
 					<div class="discount_price">
 						￥259.00
@@ -122,7 +126,7 @@
 				</li>
 				<li>
 					<a>
-						<img src="/static/img/default_wallet_1.png" />
+						<img src="http://119.29.101.67/youwutu/img/default_wallet_2.png" />
 					</a>
 					<div class="discount_price">
 						￥599.00
@@ -130,7 +134,7 @@
 				</li>
 				<li>
 					<a>
-						<img src="/static/img/default_wallet_1.png" />
+						<img src="http://119.29.101.67/youwutu/img/default_wallet_3.png" />
 					</a>
 					<div class="discount_price">
 						￥899.00
@@ -142,6 +146,7 @@
 </template>
 
 <script>
+	import {Toast,Indicator} from "mint-ui";
 	export default {
 		name: 'integral',
 		data() {
