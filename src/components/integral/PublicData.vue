@@ -1,8 +1,8 @@
 <template>
-	<div id="wrapper" class="default">
+	<div id="wrapper" class="publicdata">
 		<TopHeader :headerParam="headerParams"></TopHeader>
 		<div id="contents">
-				发布内容页面区域
+			公开数据内容页面区域
 		</div>
 		<!--<FooterNav></FooterNav>-->
 	</div>
@@ -19,7 +19,7 @@
 		icon: "icon-fanhui", //iconfont图标
 		text: "", //文字
 		ev: "", //事件
-		route: "/life" //路由
+		route: "/integral" //路由
 	}, { //第二个参数
 		icon: "",
 		text: "请修改名称",
@@ -32,7 +32,7 @@
 		route: "" //路由
 	}];
 	export default {
-		name: 'release',
+		name: 'publicdata',
 		components:{TopHeader,FooterNav},
 		data() {
 			return {

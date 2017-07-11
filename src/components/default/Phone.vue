@@ -1,13 +1,15 @@
 <template>
-	<div class="phone">
-		<!----筛选条件----->
-		<div class="condition">
-			<span @click="setActiveIndex(0)" :class="activeIndex==0? 'active':''">最新</span>
-			<span @click="setActiveIndex(1)" :class="activeIndex==1? 'active':''">销量</span>
-			<span @click="setActiveIndex(2)" :class="activeIndex==2? 'active':''">价格</span>
-		</div>
-		<ul class="list">
-			<mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :top-pull-text="topPullText" :bottom-pull-text="bottomPullText" :bottom-all-loaded="allLoaded" ref="loadmore">
+	<div id="wrapper" class="default">
+		<TopHeader :headerParam="headerParams"></TopHeader>
+		<div class="contents">
+			<!----筛选条件----->
+			<div class="condition">
+				<span @click="setActiveIndex(0)" :class="activeIndex==0? 'active':''">最新</span>
+				<span @click="setActiveIndex(1)" :class="activeIndex==1? 'active':''">销量</span>
+				<span @click="setActiveIndex(2)" :class="activeIndex==2? 'active':''">价格</span>
+			</div>
+			<ul class="list">
+			  <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :top-pull-text="topPullText" :bottom-pull-text="bottomPullText" :bottom-all-loaded="allLoaded" ref="loadmore">
 				<li v-for="(item,index) in list" :data-id="item.proid">
 					<router-link :to="'/phonedetail?id='+item.proid">
 						<img :src="item.img" />
@@ -28,17 +30,37 @@
 						</div>
 					</div>
 				</li>
-			</mt-loadmore>
-		</ul>
-
+				</mt-loadmore>
+			</ul>
+		</div>
+		<div class="cartList"></div>
 	</div>
 </template>
 
 <script>
 	import { mapGetters, mapActions } from 'vuex';
 	import { Toast, Indicator } from "mint-ui";
+	import TopHeader from "../../components/public/TopHeader";
+		//定义一个头部参数
+	let topArr = [{ //第一个参数
+		icon: "icon-fanhui", //iconfont图标
+		text: "", //文字
+		ev: "", //事件
+		route: "/" //路由
+	}, { //第二个参数
+		icon: "",
+		text: "手机",
+		ev: "",
+		route: ""
+	}, { //第三个参数
+		icon: "icon-search", //iconfont图标
+		text: "", //文字
+		ev: "", //事件
+		route: "/search" //路由
+	}];
 	export default {
 		name: 'phone',
+		components:{TopHeader},
 		data() {
 			return {
 				list: [],
@@ -46,6 +68,7 @@
 				xiaoliang: [],
 				type: 1,
 				page: 1,
+				headerParams: topArr, //头部信息参数
 				allLoaded: false,
 				topPullText: "",
 				bottomPullText: ""
@@ -67,15 +90,6 @@
 						return parseFloat(a.price.substring(0)) - parseFloat(b.price.substring(0));
 					})
 				}
-			},
-			loadTop: function() {
-				console.log("上啦")
-				this.allLoaded = true;
-				this.loadData();
-			},
-			loadBottom: function() {
-				console.log("下拉");
-				this.loadData();
 			},
 			loadData: function() {
 				var _this = this;
@@ -106,17 +120,23 @@
 				}, response => {
 					// error callback
 				});
+			},
+			loadTop: function() {
+				this.loadData()
+			},
+			loadBottom: function() {
+				this.loadData()
 			}
 		},
 		beforeMount: function() {
 			//Dom加载前自动调用
 			var _this = this;
-
+			
 		},
 		mounted: function() {
 			//Dom加载完成自动调用此方法
 			console.log("mounted");
-
+			this.loadData();
 		},
 		destoryed: function() {
 			console.log("卸载手机页面")
@@ -131,7 +151,7 @@
 		@return $px/$ui-width*7.2rem;
 	}
 	
-	.phone {
+	.contents {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
@@ -209,4 +229,9 @@
 			}
 		}
 	}
+	/*.mint-loadmore-top,.mint-loadmore-bottom{
+		span{
+			font-size: R(36px) !important;
+		}
+	}*/
 </style>

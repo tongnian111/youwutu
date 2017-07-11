@@ -36,33 +36,90 @@
   import Vue from 'vue';
   import { Progress } from 'mint-ui';
 
-  Vue.component(Progress.name, Progress);
+Vue.component(Progress.name, Progress);
+
+let slideNav = [{
+		"name": "所有",
+		"type": 0
+	},
+	{
+		"name": "其他",
+		"type": 0
+	},
+	{
+		"name": "手机",
+		"type": 1
+	},
+	{
+		"name": "配件",
+		"type": 0
+	},
+	{
+		"name": "虚拟",
+		"type": 0
+	},
+	{
+		"name": "箱包",
+		"type": 0
+	},
+	{
+		"name": "户外",
+		"type": 0
+	},
+	{
+		"name": "生活",
+		"type": 0
+	},
+	{
+		"name": "饰品",
+		"type": 0
+	},
+	{
+		"name": "美妆",
+		"type": 0
+	},
+	{
+		"name": "数码",
+		"type": 0
+	},
+	{
+		"name": "护理",
+		"type": 0
+	},
+	{
+		"name": "电脑",
+		"type": 0
+	},
+	{
+		"name": "汽车",
+		"type": 0
+	},
+	{
+		"name": "飞机",
+		"type": 0
+	},
+	{
+		"name": "火箭",
+		"type": 0
+	},
+	{
+		"name": "大炮",
+		"type": 0
+	},
+];
 
 export default {
-  name: 'person',
+	name:'person',
   data () {
     return {
-       list: [],
+       list: slideNav,
         activeName: {},
-        
         type:1,
         page:1,
         proList:[]
-        }
+   }
   },
   methods:{
-    lodeData:function(){
-      this.$http.get('/static/state/ul.json').then(response => {
-      // get body data
-       console.log(response);
-        console.log(eval(response.bodyText));
-      this.list =eval(response.bodyText);
-     
-    }, response => {
-      // error callback
-      console.log("error")
-      });
-    },
     getData:function(){
       this.$http.get('/youwutu/getpro/getProList?page=3',{params:{type:this.type,page:this.page}}).then(response => {
        console.log(response.body);
@@ -90,7 +147,6 @@ export default {
   },mounted:function(){
   	//Dom加载完成自动调用此方法
   	console.log("mounted")
-    this.lodeData()
     this.getData()
   }
 }
