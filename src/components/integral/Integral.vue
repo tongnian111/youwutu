@@ -39,5 +39,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.publicData{
+  flex: 1;
+    overflow-y: auto;
+    background:#e6e9ed;
+    height: 100%;
+}
 </style>

@@ -7,43 +7,45 @@
 			<span @click="setActiveIndex(2)" :class="activeIndex==2? 'active':''">价格</span>
 		</div>
 		<ul class="list">
-		<mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :top-pull-text="topPullText" :bottom-pull-text="bottomPullText" :bottom-all-loaded="allLoaded" ref="loadmore">
-			<li v-for="(item,index) in list" :data-id = "item.id">
-				<img :src="item.img" />
-				<div class="info">
-					<p class="name">{{item.name}}</p>
-					<div class="otherInfo">
-						<div class="price">
-							<span>价格:</span>
-							<span>{{item.price}}</span>
-						</div>
-						<div class="numAndCart">
-							<span>已销售</span>
-							<span>{{item.xiaoliang}}</span>
-							<span>件</span>
-							<i class="iconfont icon-gouwuche"></i>
+			<mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :top-pull-text="topPullText" :bottom-pull-text="bottomPullText" :bottom-all-loaded="allLoaded" ref="loadmore">
+				<li v-for="(item,index) in list" :data-id="item.proid">
+					<router-link :to="'/phonedetail?id='+item.proid">
+						<img :src="item.img" />
+					</router-link>
+					<div class="info">
+						<p class="name">{{item.name}}</p>
+						<div class="otherInfo">
+							<div class="price">
+								<span>价格:</span>
+								<span>{{item.price}}</span>
+							</div>
+							<div class="numAndCart">
+								<span>已销售</span>
+								<span>{{item.xiaoliang}}</span>
+								<span>件</span>
+								<i class="iconfont icon-gouwuche"></i>
+							</div>
 						</div>
 					</div>
-				</div>
-			</li>
+				</li>
 			</mt-loadmore>
 		</ul>
-		
+
 	</div>
 </template>
 
 <script>
 	import { mapGetters, mapActions } from 'vuex';
-	import {Toast,Indicator} from "mint-ui";
+	import { Toast, Indicator } from "mint-ui";
 	export default {
 		name: 'phone',
 		data() {
 			return {
 				list: [],
 				activeIndex: 0,
-				xiaoliang:[],
-				type:1,
-				page:1,
+				xiaoliang: [],
+				type: 1,
+				page: 1,
 				allLoaded: false,
 				topPullText: "",
 				bottomPullText: ""
@@ -52,17 +54,17 @@
 		methods: {
 			setActiveIndex: function(index) {
 				this.activeIndex = index;
-				if(index == 0){
-					this.list.sort(function(a,b){
-						return b.createTime-a.createTime;
+				if(index == 0) {
+					this.list.sort(function(a, b) {
+						return b.createTime - a.createTime;
 					})
-				}else if(index == 1){
-					this.list.sort(function(a,b){
-						return b.xiaoliang-a.xiaoliang;
+				} else if(index == 1) {
+					this.list.sort(function(a, b) {
+						return b.xiaoliang - a.xiaoliang;
 					})
-				}else if(index == 2){
-					this.list.sort(function(a,b){
-						return parseFloat(a.price.substring(0))-parseFloat(b.price.substring(0));
+				} else if(index == 2) {
+					this.list.sort(function(a, b) {
+						return parseFloat(a.price.substring(0)) - parseFloat(b.price.substring(0));
 					})
 				}
 			},
@@ -75,23 +77,28 @@
 				console.log("下拉");
 				this.loadData();
 			},
-			loadData:function(){
+			loadData: function() {
 				var _this = this;
 				this.allLoaded = true;
 				Indicator.open({
 					text: '加载中...',
-  					spinnerType: 'fading-circle'
+					spinnerType: 'fading-circle'
 				});
-				this.$http.get('/youwutu/getpro/getProList',{params: {type:this.type,page:this.page}}).then(response => {
-				response = response.body;
-				Indicator.close();
-				if(response.code === 0){
-					_this.list = _this.list.concat(response.data);
-				}
+				this.$http.get('/youwutu/getpro/getProList', {
+					params: {
+						type: this.type,
+						page: this.page
+					}
+				}).then(response => {
+					response = response.body;
+					Indicator.close();
+					if(response.code === 0) {
+						_this.list = _this.list.concat(response.data);
+					}
 					Toast({
-					  message: response.message,
-					  position: 'middle',
-					  duration: 3000
+						message: response.message,
+						position: 'middle',
+						duration: 3000
 					});
 					_this.allLoaded = false; // 若数据已全部获取完毕
 					_this.$refs.loadmore.onBottomLoaded();
@@ -177,9 +184,9 @@
 					width: 100%;
 					flex: 1;
 					padding-top: R(20px);
-					.price{
+					.price {
 						font-size: R(35px);
-						span:nth-child(2){
+						span:nth-child(2) {
 							color: #FC775C;
 						}
 					}
@@ -187,15 +194,15 @@
 						width: 100%;
 						position: relative;
 						font-size: R(24px);
-						span:nth-child(2){
+						span:nth-child(2) {
 							color: #FC775C;
 						}
-						.iconfont{
-								font-size: R(60px);
-								position: absolute;
-								color: #FC775C;
-								right: R(20px);
-								bottom: R(0px);
+						.iconfont {
+							font-size: R(60px);
+							position: absolute;
+							color: #FC775C;
+							right: R(20px);
+							bottom: R(0px);
 						}
 					}
 				}

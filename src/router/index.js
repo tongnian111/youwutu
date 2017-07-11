@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import Default from '@/components/default/Default';
 import DefaultContents from '@/components/default/comps/Contents';
 import DefaultPhone from '@/components/default/comps/Phone';
+import PhoneDetail from '@/components/default/comps/PhoneDetail';
 
 /*****************首页引入结束**********************/
 
@@ -53,6 +54,11 @@ export default new Router({
 				path: 'phone',
 				name: 'DefaultPhone',
 				component: DefaultPhone
+			},
+			{
+				path: 'phonedetail',
+				name: 'PhoneDetail',
+				component: PhoneDetail
 			}
 		]
 	}, {
