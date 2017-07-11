@@ -1,7 +1,10 @@
 [
-	{"name":"花费充值卡","itegral":"3500","src":"/static/img/sp1.png"},
-	{"name":"UI设计师","num":"3","money":"3000"},
-	{"name":"UI设计师","num":"5","money":"4000"},
-	{"name":"UI设计师","num":"9","money":"5000"}
-
+	{"itegral":"3500","itegral1":"284","itegral2":"3500","itegral3":"651","src":"/static/img/sp1.png"},
+	{"itegral":"3500","itegral1":"222","itegral2":"3500","itegral3":"123","src":"/static/img/sp2.png"},
+	{"itegral":"3500","itegral1":"333","itegral2":"3500","itegral3":"456","src":"/static/img/sp3.png"},
+	{"itegral":"3500","itegral1":"444","itegral2":"3500","itegral3":"789","src":"/static/img/sp4.png"},
+	{"itegral":"3500","itegral1":"555","itegral2":"3500","itegral3":"564","src":"/static/img/sp5.png"},
+	{"itegral":"3500","itegral1":"666","itegral2":"3500","itegral3":"78","src":"/static/img/sp6.png"},
+	{"itegral":"3500","itegral1":"777","itegral2":"3500","itegral3":"22","src":"/static/img/sp7.png"},
+	{"itegral":"3500","itegral1":"111","itegral2":"3500","itegral3":"555","src":"/static/img/sp8.png"}
 ]

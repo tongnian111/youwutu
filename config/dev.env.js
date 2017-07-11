@@ -5,6 +5,7 @@ module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   proxyTable: {
   	'/eleme_thinkPhp/eleme/': {target: 'http://localhost', changeOrigin: true},
-  	'/rightbe/api/': {target: 'http://www.daydayrise.net', changeOrigin: true}
+  	'/rightbe/api/': {target: 'http://www.daydayrise.net', changeOrigin: true},
+  	'/youwutu/': {target: 'http://10.2.153.97/youwutuphp', changeOrigin: true}
   }
 })

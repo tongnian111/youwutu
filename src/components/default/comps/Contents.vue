@@ -1,5 +1,4 @@
 <template>
-
 	<div id="contents">
 		<mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :top-pull-text="topPullText" :bottom-pull-text="bottomPullText" :bottom-all-loaded="allLoaded" ref="loadmore">
 			<div id="swiper">
@@ -140,7 +139,6 @@
 			</ul>
 		</mt-loadmore>
 	</div>
-
 </template>
 
 <script>
@@ -173,6 +171,14 @@
 		},
 		beforeMount: function() {
 			//Dom加载前自动调用
+			this.$http.get('/youwutu/getphone/getProList').then(response => {
+				// get body data
+				console.log(JSON.parse(response.body))
+				let proList = JSON.parse(response.body);
+				console.log(proList.showapi_res_body.phonePagebean.contentlist)
+			}, response => {
+				// error callback
+			});
 
 		},
 		mounted: function() {
@@ -240,7 +246,8 @@
 				}
 			}
 		}
-		.banner,.jingxuan{
+		.banner,
+		.jingxuan {
 			width: 100%;
 			height: R(362px);
 			a {
@@ -252,7 +259,8 @@
 				}
 			}
 		}
-		.discount_list,.selected_list{
+		.discount_list,
+		.selected_list {
 			display: flex;
 			margin-top: R(20px);
 			li {

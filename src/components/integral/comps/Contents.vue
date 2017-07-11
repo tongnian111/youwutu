@@ -9,11 +9,11 @@
       <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="/static/img/jifenswipe1.png" class="img" />
+              <img src="http://119.29.101.67/youwutu/img/jifenswipe1.png" class="img" />
 
             </div>
             <div class="swiper-slide">
-              <img src="/static/img/default_banner_2.jpg" class="img1" />
+              <img src="http://119.29.101.67/youwutu/img/default_banner_2.jpg" class="img1" />
             </div>
           </div>
           <div class="swiper-pagination"></div>
@@ -21,60 +21,16 @@
 
       <div class="main">
 
-        <div class="box">
-          <img src="/static/img/sp1.png" class="img2" >
-          <p class="p1">积分：<span>3500</span></p>
+        <div class="box" v-for="item in list">
+          <img :src="item.src" class="img2" >
+          <p class="p1">积分：<span>{{item.itegral}}</span></p>
 
-          <mt-progress :value="80" :bar-height="5" style="top:-3px;margin:0;padding:0"></mt-progress>
-          <p class="p2"><span class="span1">2849</span><span>3500</span><span class="span3">651</span></p>
+          <mt-progress :value="item.itegral1/item.itegral2*100" :bar-height="5" style="top:-3px;margin:0;padding:0"></mt-progress>
+          <p class="p2"><span class="span1">{{item.itegral1}}</span><span>{{item.itegral2}}</span><span class="span3">{{item.itegral3}}</span></p>
           <p class="p2"><span>以参与</span><span>总需人次</span><span>剩余</span></p>
     
         </div>
-        <div class="box">
-          <img src="/static/img/sp1.png" class="img2" >
-          <p class="p1">积分：<span>3500</span></p>
-
-          <mt-progress :value="80" :bar-height="5" style="top:-3px;margin:0;padding:0"></mt-progress>
-          <p class="p2"><span class="span1">2849</span><span>3500</span><span class="span3">651</span></p>
-          <p class="p2"><span>以参与</span><span>总需人次</span><span>剩余</span></p>
-  
-        </div>
-        <div class="box">
-          <img src="/static/img/sp1.png" class="img2" >
-          <p class="p1">积分：<span>3500</span></p>
-
-          <mt-progress :value="80" :bar-height="5" style="top:-3px;margin:0;padding:0"></mt-progress>
-          <p class="p2"><span class="span1">2849</span><span>3500</span><span class="span3">651</span></p>
-          <p class="p2"><span>以参与</span><span>总需人次</span><span>剩余</span></p>
-    
-        </div>
-        <div class="box">
-          <img src="/static/img/sp1.png" class="img2" >
-          <p class="p1">积分：<span>3500</span></p>
-
-          <mt-progress :value="80" :bar-height="5" style="top:-3px;margin:0;padding:0"></mt-progress>
-          <p class="p2"><span class="span1">2849</span><span>3500</span><span class="span3">651</span></p>
-          <p class="p2"><span>以参与</span><span>总需人次</span><span>剩余</span></p>
-     
-        </div>
-        <div class="box">
-          <img src="/static/img/sp1.png" class="img2" >
-          <p class="p1">积分：<span>3500</span></p>
-
-          <mt-progress :value="80" :bar-height="5" style="top:-3px;margin:0;padding:0"></mt-progress>
-          <p class="p2"><span class="span1">2849</span><span>3500</span><span class="span3">651</span></p>
-          <p class="p2"><span>以参与</span><span>总需人次</span><span>剩余</span></p>
-
-        </div>
-        <div class="box">
-          <img src="/static/img/sp1.png" class="img2" >
-          <p class="p1">积分：<span>3500</span></p>
-
-          <mt-progress :value="80" :bar-height="5" style="top:-3px;margin:0;padding:0"></mt-progress>
-          <p class="p2"><span class="span1">2849</span><span>3500</span><span class="span3">651</span></p>
-          <p class="p2"><span>以参与</span><span>总需人次</span><span>剩余</span></p>
-    
-        </div>
+       
       </div>
   </div>
 </template>
@@ -92,7 +48,7 @@ export default {
   name: 'test',
   data () {
     return {
-     
+      list:[]
     }
   },
   methods:{
@@ -107,7 +63,19 @@ export default {
         loop: true,
         autoplayDisableOnInteraction: false,
         pagination: '.swiper-pagination',
-      })
+      });
+    
+    this.$http.get('/static/state/state.json').then(response => {
+    // get body data
+     console.log(response);
+      console.log(eval(response.bodyText));
+    this.list =eval(response.bodyText);
+   
+    }, response => {
+      // error callback
+      console.log("error")
+    });
+
   }
 }
 </script>

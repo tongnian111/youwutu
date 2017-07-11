@@ -1,13 +1,4 @@
 <template>
-<<<<<<< HEAD
-	<div id="app">
-		<TopHeader v-show="$store.state.headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader>
-		<!--<transition enter-active-class="animated slideInRight" leave-active-class="animated">-->
-		<router-view></router-view>
-		<!--</transition>-->
-		<FooterNav v-show="$store.state.navIsVisible"></FooterNav>
-	</div>
-=======
  	<div id="app">
  		<!-- <TopHeader v-show="headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader> -->
  		<!--<transition enter-active-class="animated slideInRight" leave-active-class="animated">-->
@@ -15,7 +6,6 @@
  		<!--</transition>-->
  		<!-- <FooterNav v-show="navIsVisible"></FooterNav> -->
  	</div>
->>>>>>> xfzy
 </template>
 <!--<transition enter-active-class="animated slideInRight" leave-active-class="animated slideInLeft">-->
 <script>
@@ -135,33 +125,16 @@
 </script>
 
 <style scoped lang="scss">
-<<<<<<< HEAD
 	#app {
 		width: 100%;
 		height: 100%;
-		display: flex;
-		flex-direction: column;
-=======
-#app {
-		width: 100%;
-		height: 100%;
->>>>>>> xfzy
 		overflow: hidden;
 	}
-	
 	#wrapper {
-		width: 100%;
-<<<<<<< HEAD
-		flex: 1;
-		overflow-y: auto;
-	}
-</style>
-=======
 		height: 100%;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		overflow-y: auto;
 	}
-
 </style>
->>>>>>> xfzy

@@ -90,7 +90,6 @@ export default new Router({
       name: 'Integral',
       component: Integral,
       children:[
-<<<<<<< HEAD
         {
           path: '',
           name: 'IntegralContents',
@@ -100,8 +99,7 @@ export default new Router({
           path: 'publicData',
           name: 'PublicData',
           component: PublicData
-        }
-=======
+        },
           {
           path: '',
           name: 'IntegralContents',
@@ -132,7 +130,6 @@ export default new Router({
   					name: 'Dingdan',
   					component: Dingdan
         	}
->>>>>>> xfzy
       ]
     },{
       path: '/search',//搜索
