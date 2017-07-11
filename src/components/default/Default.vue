@@ -1,11 +1,11 @@
 <template>
 	<div id="wrapper" class="default">
 		<TopHeader v-show="$store.state.headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader>
-<<<<<<< HEAD
+
 		<Contents></Contents>
-=======
+
 		<router-view></router-view>
->>>>>>> 63da0d448c0b8bbc0813d016d13d3908dbc8cd9c
+
 		<FooterNav v-show="$store.state.navIsVisible"></FooterNav>
 	</div>
 </template>
@@ -21,12 +21,11 @@
 		components: {
 			TopHeader,
 			Contents,
-<<<<<<< HEAD
-			FooterNav
-=======
+
+
 			FooterNav,
 			Phone
->>>>>>> 63da0d448c0b8bbc0813d016d13d3908dbc8cd9c
+
 		},
 		data() {
 			return {

@@ -1,17 +1,10 @@
 <template>
-<<<<<<< HEAD
- 	<div id="app">
- 		<!-- <TopHeader v-show="headerIsVisible" :top_header_param="$store.state.topHeaderParam"></TopHeader> -->
- 		<!--<transition enter-active-class="animated slideInRight" leave-active-class="animated">-->
- 		<router-view></router-view>
- 		<!--</transition>-->
- 		<!-- <FooterNav v-show="navIsVisible"></FooterNav> -->
- 	</div>
-=======
+
+
 	<div id="app">
 		<router-view></router-view>
 	</div>
->>>>>>> 63da0d448c0b8bbc0813d016d13d3908dbc8cd9c
+
 </template>
 <!--<transition enter-active-class="animated slideInRight" leave-active-class="animated slideInLeft">-->
 <script>
@@ -137,10 +130,8 @@
 		overflow: hidden;
 	}
 	#wrapper {
-<<<<<<< HEAD
-=======
+
 		width: 100%;
->>>>>>> 63da0d448c0b8bbc0813d016d13d3908dbc8cd9c
 		height: 100%;
 		width: 100%;
 		display: flex;
