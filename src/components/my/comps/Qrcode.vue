@@ -2,7 +2,7 @@
 	<div class="qrcode">
 		<div class="ma">
 			<p>优物兔</p>
-			<img src="../../../../static/img/my-erweima.png">
+			<img src="http://119.29.101.67/youwutu/img/my-erweima.png">
 			<p class="sao">扫一扫，快速下载</p>
 		</div>
 	</div>
