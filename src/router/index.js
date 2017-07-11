@@ -10,7 +10,7 @@ import PhoneDetail from '@/components/default/PhoneDetail';
 /*****************生活引入开始**********************/
 import Life from '@/components/life/Life';
 import Release from '@/components/life/Release';
-//import LifeContents from '@/components/life/Contents';
+
 /*****************生活引入结束**********************/
 
 /*****************积分引入开始**********************/
