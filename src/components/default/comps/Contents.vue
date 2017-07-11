@@ -107,11 +107,7 @@
 			</ul>
 			<div class="jingxuan">
 				<a>
-<<<<<<< HEAD
-					<img src="/static/img/default_jingxuan_1.png" />
-=======
 					<img src="http://119.29.101.67/youwutu/img/default_jingxuan_1.png" />
->>>>>>> 63da0d448c0b8bbc0813d016d13d3908dbc8cd9c
 				</a>
 			</div>
 			<!---精选--->
