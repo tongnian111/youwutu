@@ -51,7 +51,9 @@ export default new Router({
 			path: '/phonedetail',
 			name: 'PhoneDetail',
 			component: PhoneDetail
-		} /****************首页路由到此结束**********************/ ,
+		}
+		/****************首页路由到此结束**********************/
+		,
 		/****************生活页面路由开始**********************/
 		{
 			path: '/life',

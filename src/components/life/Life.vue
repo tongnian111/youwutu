@@ -31,21 +31,20 @@
 						</div>
 					</div>
 				</div>
-				<div class="kuang" v-for="item in list">
+				<div class="kuang" v-for="(item,index) in list">
 					<div class="ss">
-						<img :src="item.imgurl1">
-						<p>{{item.p1}}</p>
-						<p>{{item.p2}}</p>
+						<img :src="userInfo[index].header" :data-uid="userInfo[index].userid">
+						<p>{{userInfo[index].nickname}}</p>
+						<p>{{userInfo[index].time}}</p>
 					</div>
 					<div class="xx">
-						<img :src="item.imgurl2">
-						<p>{{item.p3}}</p>
-						<p>{{item.p4}}</p>
-						<p>...</p>
+						<img :src="headInfo[index].surl">
+						<p>{{headInfo[index].title}}</p>
+						<p class="content">{{item[0].content}}</p>
 						<ul class="xiakuang">
 							<li class="l">常识</li>
-							<li class="r"><i class="iconfont icon-jifen"></i>0</li>
-							<li class="r"><i class="iconfont icon-shoucangkong_"></i>2</li>
+							<li class="r"><i class="iconfont icon-jifen"></i>{{headInfo[index].ccount}}</li>
+							<li class="r"><i class="iconfont icon-shoucangkong_"></i>{{headInfo[index].lcount}}</li>
 							<li class="r"><i class="iconfont icon-xiaoxi1"></i>0</li>
 						</ul>
 					</div>
@@ -60,6 +59,7 @@
 	import { mapGetters, mapActions } from 'vuex';
 	import TopHeader from "../../components/public/TopHeader";
 	import FooterNav from "../../components/public/FooterNav";
+	import { Toast, Indicator } from "mint-ui";
 	//定义一个头部参数
 	let topArr = [{ //第一个参数
 		icon: "icon-search", //iconfont图标
@@ -87,22 +87,48 @@
 			return {
 				headerParams: topArr, //头部信息参数
 				activeIndex: 0,
+				headInfo: [],
+				userInfo: [],
 				list: []
 			}
 		},
 		methods: {
-			tar: function(e) {
-				this.activeIndex = e;
+			tar: function(index) {
+				this.activeIndex = index;
+				this.getData(index+1)
+			},
+			getData: function(page=1) {
+				Indicator.open({
+					text: '加载中...',
+					spinnerType: 'fading-circle'
+				});
+				var that = this;
+				this.$http.get('/youwutu/life/getLifeData',{params:{page:page}}).then(response => {
+					//					console.log(response);
+					let data = response.body.data;
+					let len = data.length;
+					that.headInfo.splice(0);
+					that.userInfo.splice(0);
+					that.list.splice(0);
+					for(var i = 0; i < len; i++) {
+						that.headInfo.push(data[i][0]);
+						that.userInfo.push(data[i][1]);
+						that.list.push(data[i].splice(3));
+					}
+					console.log(that.list)
+					Indicator.close();
+					Toast({
+						message: response.body.message,
+						position: 'middle',
+						duration: 3000
+					});
+				}, response => {
+					Indicator.close();
+				});
 			}
 		},
 		beforeMount: function() { //Dom加载前自动调用
-			var that = this;
-			this.$http.get('/static/data/life_shuju.json').then(response => {
-				console.log(response)
-				that.list = response.body;
-			}, response => {
-				// error callback
-			});
+			this.getData();
 		},
 		mounted: function() {
 			//Dom加载完成自动调用此方法
@@ -124,7 +150,6 @@
 	
 	#contents {
 		flex: 1;
-		overflow-y: auto;
 		display: flex;
 		flex-direction: column;
 		.shangd {
@@ -148,6 +173,7 @@
 		}
 		.zhong {
 			flex: 1;
+			overflow-y: auto;
 			.swiper-container {
 				height: R(323px);
 				width: 100%;
@@ -198,10 +224,11 @@
 						color: #6c747e;
 						margin-bottom: R(41px);
 					}
-					p:nth-of-type(3) {
-						color: #6c747e;
-						font-size: R(20px);
-						margin-bottom: R(10px);
+					p.content{
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 2; //文本行数
+						overflow: hidden;
 					}
 					ul.xiakuang {
 						height: R(42px);
