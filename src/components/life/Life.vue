@@ -31,20 +31,21 @@
 						</div>
 					</div>
 				</div>
-				<div class="kuang" v-for="(item,index) in list">
+				<div class="kuang" v-for="item in list">
 					<div class="ss">
-						<img :src="userInfo[index].header" :data-uid="userInfo[index].userid">
-						<p>{{userInfo[index].nickname}}</p>
-						<p>{{userInfo[index].time}}</p>
+						<img :src="item.imgurl1">
+						<p>{{item.p1}}</p>
+						<p>{{item.p2}}</p>
 					</div>
 					<div class="xx">
-						<img :src="headInfo[index].surl">
-						<p>{{headInfo[index].title}}</p>
-						<p class="content">{{item[0].content}}</p>
+						<img :src="item.imgurl2">
+						<p>{{item.p3}}</p>
+						<p>{{item.p4}}</p>
+						<p>...</p>
 						<ul class="xiakuang">
 							<li class="l">常识</li>
-							<li class="r"><i class="iconfont icon-jifen"></i>{{headInfo[index].ccount}}</li>
-							<li class="r"><i class="iconfont icon-shoucangkong_"></i>{{headInfo[index].lcount}}</li>
+							<li class="r"><i class="iconfont icon-jifen"></i>0</li>
+							<li class="r"><i class="iconfont icon-shoucangkong_"></i>2</li>
 							<li class="r"><i class="iconfont icon-xiaoxi1"></i>0</li>
 						</ul>
 					</div>
