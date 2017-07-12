@@ -3,7 +3,6 @@
 		<TopHeader :headerParam="headerParams"></TopHeader>
 		<div id="contents">
 			<div class="shangd">
-<<<<<<< HEAD
 				<ul id="yipai">
 					<li @click="tar(0)" :class="activeIndex==0? 'active':''">推荐</li>
 					<li @click="tar(1)" :class="activeIndex==1? 'active':''">美景</li>
@@ -52,56 +51,6 @@
 					</div>
 				</div>
 			</div>
-=======
-          <ul id="yipai">
-            <li @click="tar(0)" :class="activeIndex==0? 'active':''">推荐</li>
-            <li @click="tar(1)" :class="activeIndex==1? 'active':''">美景</li>
-            <li @click="tar(2)" :class="activeIndex==2? 'active':''">美食</li>
-            <li @click="tar(3)" :class="activeIndex==3? 'active':''">视频</li>
-            <li @click="tar(4)" :class="activeIndex==4? 'active':''">发布</li>
-          </ul>   
-      </div>
-      <div class="zhong">
-          <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <a>
-                <img src="http://119.29.101.67/youwutu/img/my_ban_1.jpg" />
-              </a>
-            </div>
-            <div class="swiper-slide">
-              <a>
-                <img src="http://119.29.101.67/youwutu/img/my_ban_2.jpg" />
-              </a>
-            </div>
-            <div class="swiper-slide">
-              <a>
-                <img src="http://119.29.101.67/youwutu/img/my_ban_3.jpg" />
-              </a>
-            </div>
-          </div>
-      </div>
-      <div class="kuang" v-for="item in list">
-        <div class="ss">
-          <img :src="item.imgurl1">
-          <p>{{item.p1}}</p>
-          <p>{{item.p2}}</p>
-        </div>
-        <div class="xx">
-          <img :src="item.imgurl2">
-          <p>{{item.p3}}</p>
-          <p>{{item.p4}}</p>
-          <p>...</p>
-          <ul class="xiakuang">
-            <li class="l">{{item.li1}}</li>
-            <li class="r"><i class="iconfont icon-jifen"></i>0</li>
-            <li class="r"><i class="iconfont icon-shoucangkong_"></i>{{item.li2}}</li>
-            <li class="r"><i class="iconfont icon-xiaoxi1"></i>0</li>
-          </ul>
-        </div>
-      </div>
-      </div>
->>>>>>> 9379488d4bc0a780c1a6f06f4b5b19e4b6d720cf
 		</div>
 		<FooterNav></FooterNav>
 	</div>
