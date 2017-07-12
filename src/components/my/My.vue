@@ -4,19 +4,15 @@
 		<div id="contents">
 			<ul class="mm">
 				<li>
-<<<<<<< HEAD
-					<router-link to="/login">登陆/注册</router-link>
-=======
 					<img id="headerImg" v-if="isLogin" :src="headerImg" />
 					<router-link v-if="!isLogin" to="/login">登陆/注册</router-link>
 					<a v-if="isLogin">{{this.username}}</a>
 					<a id="loginoutBtn" @click="loginOut" v-if="isLogin">退出</a>
->>>>>>> tn
 				</li>
 				<li><i class="iconfont icon-qianbao1 qianzi"></i>钱包<i class="iconfont icon-xiayiye1 houzi"></i></li>
 				<li>
 					<router-link to="/cart">
-					<i class="iconfont icon-gouwuche1 qianzi"></i>购物车<i class="iconfont icon-xiayiye1 houzi"></i>
+						<i class="iconfont icon-gouwuche1 qianzi"></i>购物车<i class="iconfont icon-xiayiye1 houzi"></i>
 					</router-link>
 				</li>
 				<li><i class="iconfont icon-icon_user-defined qianzi"></i>购物记录<i class="iconfont icon-xiayiye1 houzi"></i></li>
@@ -61,16 +57,12 @@
 		data() {
 			return {
 				active: 'tab-container1',
-<<<<<<< HEAD
-				headerParams:topArr
-=======
 				headerParams: topArr,
 				isLogin: false,
 				username: '',
 				nickName: '',
 				uid: "",
 				headerImg: 'http://119.29.101.67/youwutu/img/default1.jpg'
->>>>>>> tn
 			}
 		},
 		methods: {

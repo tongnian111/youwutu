@@ -4,22 +4,6 @@
 		<div id="contents">
 			<div class="shang1">
 				&nbsp;
-<<<<<<< HEAD
-				<input type="text" placeholder="请输入11位手机号" ref="username">
-			</div>
-			<div class="shang2">
-				&nbsp;
-				<input type="text" placeholder="请输入验证码">
-				<img src="http://10.2.153.97/youwutuphp/youwutu/user/createcode" onclick="this.src='http://10.2.153.97/youwutuphp/youwutu/user/createcode?t='+new Date()" />
-			</div>
-			<div class="shang3">
-				&nbsp;
-				<input type="text" placeholder="请输入昵称(10个字符以内)" ref="nkname">
-			</div>
-			<div class="shang4">
-				&nbsp;
-				<input type="password" placeholder="请输入6~20位数字或字母密码" ref="psw">
-=======
 				<input type="text" @blur="checkUsername" v-model="username" placeholder="请输入11位手机号">
 			</div>
 			<div class="shang2">
@@ -38,9 +22,7 @@
 			<div class="shang5">
 				&nbsp;
 				<mt-button @click="register" type="primary" :disabled="disabled" size="large">完成</mt-button>
->>>>>>> tn
 			</div>
-			<button @click="reg">完成</button>
 		</div>
 	</div>
 </template>
@@ -73,48 +55,33 @@
 		data() {
 			return {
 				headerParams: topArr, //头部信息参数
-				codeSrc:"http://10.2.153.97/youwutuphp/youwutu/user/createcode",
-				username:'',
-				nickName:'',
-				password:'',
-				disabled:true,
-				code:'',
-				flag:[0,0,1,0]
+				codeSrc: "http://10.2.153.97/youwutuphp/youwutu/user/createcode",
+				username: '',
+				nickName: '',
+				password: '',
+				disabled: true,
+				code: '',
+				flag: [0, 0, 1, 0]
 			}
 		},
 		methods: {
-<<<<<<< HEAD
-			reg:function(){
-				this.$http.post('/api/user/register', {
-			        username: this.$refs.username.value,
-        			password: this.$refs.psw.value,
-        			nickname: this.$refs.nkname.value
-			      }).then(response => {
-
-			        console.log(response.body.message);
-			        if(response.body.message == "注册成功"){
-			        	location.hash = "/login"
-			        }
-		        
-			      }, response => {
-			        // error callback
-			      });
-=======
-			getCode:function(){
-				this.codeSrc = "http://10.2.153.97/youwutuphp/youwutu/user/createcode?t="+new Date();
+			getCode: function() {
+				this.codeSrc = "http://10.2.153.97/youwutuphp/youwutu/user/createcode?t=" + new Date();
 				var _this = this;
-				setTimeout(function(){
+				setTimeout(function() {
 					_this.code = _this.$cookie.get('code');
-				 	 _this.checkCode();
-				},1000)
+					_this.checkCode();
+				}, 1000)
 			},
-			checkUsername:function(){
+			checkUsername: function() {
 				let _this = this;
-				this.$http.post("/youwutu/user/checkuser",{username:this.username}).then(function(res){
-					if(res.body.code===0){
-						_this.flag.splice(0,1,1);
-					}else{
-						_this.flag.splice(0,1,0);
+				this.$http.post("/youwutu/user/checkuser", {
+					username: this.username
+				}).then(function(res) {
+					if(res.body.code === 0) {
+						_this.flag.splice(0, 1, 1);
+					} else {
+						_this.flag.splice(0, 1, 0);
 					}
 					Toast({
 						message: res.body.message,
@@ -122,36 +89,42 @@
 						duration: 3000
 					});
 				})
-			},checkCode:function(){
-				if(this.code === this.$cookie.get('code')){
-					this.flag.splice(1,1,1);
-				}else{
-					this.flag.splice(1,1,0);
+			},
+			checkCode: function() {
+				if(this.code === this.$cookie.get('code')) {
+					this.flag.splice(1, 1, 1);
+				} else {
+					this.flag.splice(1, 1, 0);
 				}
 			},
-			checkNickName:function(){
-				if(this.nickName.trim().length <= 10){
-					this.flag.splice(2,1,1);
-				}else{
-					this.flag.splice(2,1,0);
+			checkNickName: function() {
+				if(this.nickName.trim().length <= 10) {
+					this.flag.splice(2, 1, 1);
+				} else {
+					this.flag.splice(2, 1, 0);
 				}
 			},
-			checkPass:function(){
+			checkPass: function() {
 				let re = /^[a-zA-Z0-9]{6,20}$/;
-				if(re.test(this.password)){
-					this.flag.splice(3,1,1);
-				}else{
-					this.flag.splice(3,1,0);
+				if(re.test(this.password)) {
+					this.flag.splice(3, 1, 1);
+				} else {
+					this.flag.splice(3, 1, 0);
 				}
-			},register:function(){
+			},
+			register: function() {
 				Indicator.open({
 					text: '注册中...',
 					spinnerType: 'fading-circle'
 				});
 				var _this = this;
-				this.$http.post("/youwutu/user/register",{username:this.username,password:this.password,nickname:this.nickName}).then(function(res){
+				this.$http.post("/youwutu/user/register", {
+					username: this.username,
+					password: this.password,
+					nickname: this.nickName
+				}).then(function(res) {
 					console.log(res);
-					if(res.body.code === 0){
+					if(res.body.code === 0) {
 						_this.$router.push('/my');
 					}
 					Toast({
@@ -161,7 +134,6 @@
 					});
 					Indicator.close();
 				})
->>>>>>> tn
 			}
 		},
 		beforeMount: function() {
@@ -170,22 +142,23 @@
 		mounted: function() {
 			//Dom加载完成自动调用此方法
 			var _this = this;
-			setTimeout(function(){
+			setTimeout(function() {
 				_this.code = _this.$cookie.get('code');
-			 	 _this.checkCode();
-			},1000)
-		},watch:{
-			flag:{
-				handler:function(newVal){
-					for(var i=0;i<newVal.length;i++){
-						if(newVal[i] == 0){
+				_this.checkCode();
+			}, 1000)
+		},
+		watch: {
+			flag: {
+				handler: function(newVal) {
+					for(var i = 0; i < newVal.length; i++) {
+						if(newVal[i] == 0) {
 							this.disabled = true;
 							return;
 						}
 					}
 					this.disabled = false;
 				},
-				deep:true
+				deep: true
 			}
 		}
 	}
@@ -219,43 +192,19 @@
 		}
 		div.shang2 {
 			input {
-				width: R(280px);
+				width: R(400px);
 			}
-<<<<<<< HEAD
-			img {
-				float: right;
-				height: R(79px);
-				line-height: R(79px);
-				width: R(332px);
-=======
-			#code{
+			#code {
 				float: right;
 				height: R(79px);
 				line-height: R(79px);
 				width: R(209px);
->>>>>>> tn
 				border: R(2px) solid #fc6e51;
 				text-align: center;
 			}
 		}
-<<<<<<< HEAD
-		button{
-			margin-top: R(60px);
-			margin-bottom: 0;
-			text-align: center;
-			padding: 0;
-			display: inline-block;
-			color: #fc6e51;
-			outline:none;
-			height: R(81px);
-			line-height: R(81px);
-			width:100%;
-			background:#fff;
-			border:R(2px) solid #fc6e51;
-=======
 		div.shang5 {
 			background: none;
->>>>>>> tn
 		}
 	}
 </style>

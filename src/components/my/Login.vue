@@ -4,29 +4,16 @@
 		<div id="contents">
 			<div class="zhang">
 				账号
-<<<<<<< HEAD
-				<input type="text" placeholder="请输入11位手机号" ref="username">
-			</div>
-			<div class="mi">
-				密码
-				<input type="password" placeholder="请输入6~20位的密码" ref="psw">
-=======
 				<input type="text" @blur="checkUsername" v-model="username" placeholder="请输入11位手机号">
 			</div>
 			<div class="mi">
 				密码
 				<input type="password" @keyup="checkPass" v-model="password" placeholder="请输入6~20位的密码">
->>>>>>> tn
 				<p>
-					<a href="#/my/register">忘记密码</a>
+					<a href="#">忘记密码</a>
 				</p>
-<<<<<<< HEAD
-				<button class="denglu" @click="logg">登陆</button>
-				<router-link to="/register" class="zhuce">注册</router-link>
-=======
 				<mt-button @click="login" size="large" type="primary" plain :disabled="disabled">登陆</mt-button>
 				<mt-button @click="toRegister" size="large" type="primary" plain style="margin-top: 20px;">注册</mt-button>
->>>>>>> tn
 			</div>
 		</div>
 	</div>
@@ -36,7 +23,7 @@
 <script>
 	import TopHeader from "../../components/public/TopHeader";
 	import { Toast, Indicator } from "mint-ui";
-	
+
 	let topArr = [{ //第一个参数
 		icon: "icon-fanhui", //iconfont图标
 		text: "", //文字
@@ -65,35 +52,18 @@
 				username: "",
 				password: "",
 				flag: [0, 0],
-				disabled:true
+				disabled: true
 			}
 		},
 		methods: {
-<<<<<<< HEAD
-			logg:function(){
-	      		this.$http.post('/api/user/login', {
-	              username: this.$refs.username.value,
-	              password: this.$refs.psw.value
-	            }).then(response => {
-
-	              console.log(response.body.message);
-	              if(response.body.message == "登录成功!"){
-	                location.hash = "#/"
-	              }
-	            
-	            }, response => {
-	              // error callback
-	            });
-    }
-=======
 			toRegister: function() {
 				this.$router.push('/register');
 			},
 			checkUsername: function() {
 				let re = /^1[34578]\d{9}$/;
-				if(re.test(this.username)){
+				if(re.test(this.username)) {
 					this.flag.splice(0, 1, 1);
-				}else{
+				} else {
 					this.flag.splice(0, 1, 0);
 					Toast({
 						message: "用户名格式不正确",
@@ -109,10 +79,14 @@
 				} else {
 					this.flag.splice(1, 1, 0);
 				}
-			},login:function(){
+			},
+			login: function() {
 				let _this = this;
-				this.$http.post("/youwutu/user/login",{username:this.username,password:this.password}).then(function(res){
-					if(res.body.code == 0){
+				this.$http.post("/youwutu/user/login", {
+					username: this.username,
+					password: this.password
+				}).then(function(res) {
+					if(res.body.code == 0) {
 						_this.$router.push('/my');
 					}
 					Toast({
@@ -122,7 +96,6 @@
 					});
 				});
 			}
->>>>>>> tn
 		},
 		beforeMount: function() {
 			//Dom加载前自动调用
@@ -199,17 +172,14 @@
 				float: right;
 			}
 		}
-		button.denglu {
-			width:100%;
-		    display: block;
-		    height: R(79px);
-		    line-height: r(79px);
-		    border: R(2px) solid #fc6e51;
-		    color: #fc6e51;
-		    text-align: center;
-		    margin-bottom: R(31px);
-		    outline:none;
-		    background:#fff;
+		a.denglu {
+			display: block;
+			height: R(79px);
+			line-height: r(79px);
+			border: R(2px) solid #fc6e51;
+			color: #fc6e51;
+			text-align: center;
+			margin-bottom: R(31px);
 		}
 		a.zhuce {
 			display: block;
