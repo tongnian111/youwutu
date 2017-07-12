@@ -4,8 +4,7 @@
 		<div id="contents">
 			<ul class="mm">
 				<li>
-					<router-link v-if="!aa" to="/login">登陆/注册</router-link>
-					<router-link v-if="aa" to="/login">用户名</router-link>
+					<router-link to="/login">登陆/注册</router-link>
 				</li>
 				<li><i class="iconfont icon-qianbao1 qianzi"></i>钱包<i class="iconfont icon-xiayiye1 houzi"></i></li>
 				<li><i class="iconfont icon-gouwuche1 qianzi"></i>购物车<i class="iconfont icon-xiayiye1 houzi"></i></li>
@@ -50,8 +49,7 @@
 		data() {
 			return {
 				active: 'tab-container1',
-				headerParams:topArr,
-				aa:false
+				headerParams:topArr
 			}
 		},
 		methods: {

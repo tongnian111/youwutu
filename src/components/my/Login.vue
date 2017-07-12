@@ -4,15 +4,15 @@
 		<div id="contents">
 			<div class="zhang">
 				账号
-				<input type="text" placeholder="请输入11位手机号">
+				<input type="text" placeholder="请输入11位手机号" ref="username">
 			</div>
 			<div class="mi">
 				密码
-				<input type="password" placeholder="请输入6~20位的密码">
+				<input type="password" placeholder="请输入6~20位的密码" ref="psw">
 				<p>
-					<a href="#">忘记密码</a>
+					<a href="#/my/register">忘记密码</a>
 				</p>
-				<a class="denglu">登陆</a>
+				<button class="denglu" @click="logg">登陆</button>
 				<router-link to="/register" class="zhuce">注册</router-link>
 			</div>
 		</div>
@@ -48,7 +48,21 @@
 			}
 		},
 		methods: {
+			logg:function(){
+	      		this.$http.post('/api/user/login', {
+	              username: this.$refs.username.value,
+	              password: this.$refs.psw.value
+	            }).then(response => {
 
+	              console.log(response.body.message);
+	              if(response.body.message == "登录成功!"){
+	                location.hash = "#/"
+	              }
+	            
+	            }, response => {
+	              // error callback
+	            });
+    }
 		},
 		beforeMount: function() {
 			//Dom加载前自动调用
@@ -111,14 +125,17 @@
 				float: right;
 			}
 		}
-		a.denglu {
-			display: block;
-			height: R(79px);
-			line-height: r(79px);
-			border: R(2px) solid #fc6e51;
-			color: #fc6e51;
-			text-align: center;
-			margin-bottom: R(31px);
+		button.denglu {
+			width:100%;
+		    display: block;
+		    height: R(79px);
+		    line-height: r(79px);
+		    border: R(2px) solid #fc6e51;
+		    color: #fc6e51;
+		    text-align: center;
+		    margin-bottom: R(31px);
+		    outline:none;
+		    background:#fff;
 		}
 		a.zhuce {
 			display: block;

@@ -4,25 +4,22 @@
 		<div id="contents">
 			<div class="shang1">
 				&nbsp;
-				<input type="text" placeholder="请输入11位手机号">
+				<input type="text" placeholder="请输入11位手机号" ref="username">
 			</div>
 			<div class="shang2">
 				&nbsp;
 				<input type="text" placeholder="请输入验证码">
-				<a href="#">获取验证码</a>
+				<img src="http://10.2.153.97/youwutuphp/youwutu/user/createcode" onclick="this.src='http://10.2.153.97/youwutuphp/youwutu/user/createcode?t='+new Date()" />
 			</div>
 			<div class="shang3">
 				&nbsp;
-				<input type="text" placeholder="请输入昵称(10个字符以内)">
+				<input type="text" placeholder="请输入昵称(10个字符以内)" ref="nkname">
 			</div>
 			<div class="shang4">
 				&nbsp;
-				<input type="password" placeholder="请输入6~20位数字或字母密码">
+				<input type="password" placeholder="请输入6~20位数字或字母密码" ref="psw">
 			</div>
-			<div class="shang5">
-				&nbsp;
-				<a href="#">完成</a>
-			</div>
+			<button @click="reg">完成</button>
 		</div>
 	</div>
 </template>
@@ -57,7 +54,22 @@
 			}
 		},
 		methods: {
+			reg:function(){
+				this.$http.post('/api/user/register', {
+			        username: this.$refs.username.value,
+        			password: this.$refs.psw.value,
+        			nickname: this.$refs.nkname.value
+			      }).then(response => {
 
+			        console.log(response.body.message);
+			        if(response.body.message == "注册成功"){
+			        	location.hash = "/login"
+			        }
+		        
+			      }, response => {
+			        // error callback
+			      });
+			}
 		},
 		beforeMount: function() {
 			//Dom加载前自动调用
@@ -98,27 +110,30 @@
 		}
 		div.shang2 {
 			input {
-				width: R(400px);
+				width: R(280px);
 			}
-			a {
+			img {
 				float: right;
 				height: R(79px);
 				line-height: R(79px);
-				width: R(179px);
+				width: R(332px);
 				border: R(2px) solid #fc6e51;
 				text-align: center;
 			}
 		}
-		div.shang5 {
+		button{
 			margin-top: R(60px);
 			margin-bottom: 0;
 			text-align: center;
 			padding: 0;
-			border: R(2px) solid #fc6e51;
-			a {
-				display: inline-block;
-				color: #fc6e51;
-			}
+			display: inline-block;
+			color: #fc6e51;
+			outline:none;
+			height: R(81px);
+			line-height: R(81px);
+			width:100%;
+			background:#fff;
+			border:R(2px) solid #fc6e51;
 		}
 	}
 </style>
