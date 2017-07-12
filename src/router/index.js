@@ -27,6 +27,7 @@ import My from '@/components/my/My';
 import Register from '@/components/my/Register';
 import Login from '@/components/my/Login';
 import Qrcode from '@/components/my/Qrcode';
+import Cart from '@/components/my/Cart';
 /*****************我的引入结束**********************/
 
 /******************搜索页面开始*********************/
@@ -115,6 +116,11 @@ export default new Router({
 			path: '/register',
 			name: 'Register',
 			component: Register
+		},
+		{
+			path: '/cart',
+			name: 'Cart',
+			component: Cart
 		}
 		/****************我的页面路由到结束**********************/
 		,

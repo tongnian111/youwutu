@@ -4,24 +4,24 @@
 		<div id="contents">
 			<div class="shang1">
 				&nbsp;
-				<input type="text" placeholder="请输入11位手机号">
+				<input type="text" @blur="checkUsername" v-model="username" placeholder="请输入11位手机号">
 			</div>
 			<div class="shang2">
 				&nbsp;
-				<input type="text" placeholder="请输入验证码">
-				<a href="#">获取验证码</a>
+				<input type="text" @blur="checkCode" v-model="code" placeholder="请输入验证码">
+				<img id="code" @click="getCode" :src="codeSrc" />
 			</div>
 			<div class="shang3">
 				&nbsp;
-				<input type="text" placeholder="请输入昵称(10个字符以内)">
+				<input type="text" @keyup="checkNickName" v-model="nickName" placeholder="请输入昵称(10个字符以内)">
 			</div>
 			<div class="shang4">
 				&nbsp;
-				<input type="password" placeholder="请输入6~20位数字或字母密码">
+				<input type="password" @keyup="checkPass" v-model="password" placeholder="请输入6~20位数字或字母密码">
 			</div>
 			<div class="shang5">
 				&nbsp;
-				<a href="#">完成</a>
+				<mt-button @click="register" type="primary" :disabled="disabled" size="large">完成</mt-button>
 			</div>
 		</div>
 	</div>
@@ -29,6 +29,7 @@
 
 <script>
 	import TopHeader from "../../components/public/TopHeader";
+	import { Toast, Indicator } from "mint-ui";
 	//定义一个头部参数
 	let topArr = [{ //第一个参数
 		icon: "icon-fanhui", //iconfont图标
@@ -54,18 +55,102 @@
 		data() {
 			return {
 				headerParams: topArr, //头部信息参数
+				codeSrc:"http://10.2.153.97/youwutuphp/youwutu/user/createcode",
+				username:'',
+				nickName:'',
+				password:'',
+				disabled:true,
+				code:'',
+				flag:[0,0,1,0]
 			}
 		},
 		methods: {
-
+			getCode:function(){
+				this.codeSrc = "http://10.2.153.97/youwutuphp/youwutu/user/createcode?t="+new Date();
+				var _this = this;
+				setTimeout(function(){
+					_this.code = _this.$cookie.get('code');
+				 	 _this.checkCode();
+				},1000)
+			},
+			checkUsername:function(){
+				let _this = this;
+				this.$http.post("/youwutu/user/checkuser",{username:this.username}).then(function(res){
+					if(res.body.code===0){
+						_this.flag.splice(0,1,1);
+					}else{
+						_this.flag.splice(0,1,0);
+					}
+					Toast({
+						message: res.body.message,
+						position: 'middle',
+						duration: 3000
+					});
+				})
+			},checkCode:function(){
+				if(this.code === this.$cookie.get('code')){
+					this.flag.splice(1,1,1);
+				}else{
+					this.flag.splice(1,1,0);
+				}
+			},
+			checkNickName:function(){
+				if(this.nickName.trim().length <= 10){
+					this.flag.splice(2,1,1);
+				}else{
+					this.flag.splice(2,1,0);
+				}
+			},
+			checkPass:function(){
+				let re = /^[a-zA-Z0-9]{6,20}$/;
+				if(re.test(this.password)){
+					this.flag.splice(3,1,1);
+				}else{
+					this.flag.splice(3,1,0);
+				}
+			},register:function(){
+				Indicator.open({
+					text: '注册中...',
+					spinnerType: 'fading-circle'
+				});
+				var _this = this;
+				this.$http.post("/youwutu/user/register",{username:this.username,password:this.password,nickname:this.nickName}).then(function(res){
+					console.log(res);
+					if(res.body.code === 0){
+						_this.$router.push('/my');
+					}
+					Toast({
+						message: res.body.message,
+						position: 'middle',
+						duration: 3000
+					});
+					Indicator.close();
+				})
+			}
 		},
 		beforeMount: function() {
 			//Dom加载前自动调用
-
 		},
 		mounted: function() {
 			//Dom加载完成自动调用此方法
-
+			var _this = this;
+			setTimeout(function(){
+				_this.code = _this.$cookie.get('code');
+			 	 _this.checkCode();
+			},1000)
+		},watch:{
+			flag:{
+				handler:function(newVal){
+					for(var i=0;i<newVal.length;i++){
+						if(newVal[i] == 0){
+							this.disabled = true;
+							return;
+						}
+					}
+					this.disabled = false;
+				},
+				deep:true
+			}
 		}
 	}
 </script>
@@ -100,25 +185,17 @@
 			input {
 				width: R(400px);
 			}
-			a {
+			#code{
 				float: right;
 				height: R(79px);
 				line-height: R(79px);
-				width: R(179px);
+				width: R(209px);
 				border: R(2px) solid #fc6e51;
 				text-align: center;
 			}
 		}
 		div.shang5 {
-			margin-top: R(60px);
-			margin-bottom: 0;
-			text-align: center;
-			padding: 0;
-			border: R(2px) solid #fc6e51;
-			a {
-				display: inline-block;
-				color: #fc6e51;
-			}
+			background: none;
 		}
 	}
 </style>

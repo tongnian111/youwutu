@@ -12,9 +12,6 @@
 				<li>
 					<router-link to="/tiyan">体验区</router-link>
 				</li>
-				<li>
-					<router-link to="/order">订单区</router-link>
-				</li>
 			</ul>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
@@ -67,7 +64,7 @@
 		ev: "",
 		route: ""
 	}, { //第三个参数
-		icon: "icon-sangedian", //iconfont图标
+		icon: "", //iconfont图标
 		text: "", //文字
 		ev: "", //事件
 		route: "" //路由
@@ -138,7 +135,7 @@
 			line-height: R(82px);
 			background: #fff;
 			li {
-				width: 25%;
+				flex: 1;
 				font-size: R(16px);
 				text-align: center;
 			}
