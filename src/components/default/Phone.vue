@@ -8,7 +8,7 @@
 				<span @click="setActiveIndex(1)" :class="activeIndex==1? 'active':''">销量</span>
 				<span @click="setActiveIndex(2)" :class="activeIndex==2? 'active':''">价格</span>
 			</div>
-			<ul class="list">
+			<ul id="list" class="list">
 			  <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :top-pull-text="topPullText" :bottom-pull-text="bottomPullText" :bottom-all-loaded="allLoaded" ref="loadmore">
 				<li v-for="(item,index) in list" :data-id="item.proid">
 					<router-link :to="'/phonedetail?id='+item.proid">
@@ -25,7 +25,7 @@
 								<span>已销售</span>
 								<span>{{item.xiaoliang}}</span>
 								<span>件</span>
-								<i class="iconfont icon-gouwuche"></i>
+								<i @click="addToCart($event)" class="iconfont icon-gouwuche" :data-proid="item.proid"></i>
 							</div>
 						</div>
 					</div>
@@ -122,10 +122,13 @@
 				});
 			},
 			loadTop: function() {
-				this.loadData()
+				this.loadData();
 			},
 			loadBottom: function() {
-				this.loadData()
+				this.loadData();
+			},
+			addToCart:function(e){
+				alert(e.target.getAttribute('data-proid'))
 			}
 		},
 		beforeMount: function() {
@@ -137,6 +140,7 @@
 			//Dom加载完成自动调用此方法
 			console.log("mounted");
 			this.loadData();
+			
 		},
 		destoryed: function() {
 			console.log("卸载手机页面")

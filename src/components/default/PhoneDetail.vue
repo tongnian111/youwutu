@@ -10,7 +10,7 @@
 				<div id="swiper">
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide" v-for="item in imgList">
+							<div class="swiper-slide" v-for="(item,index) in imgList" :key="index" v-if="index < 10">
 								<a>
 									<img :src="item" />
 								</a>
@@ -20,12 +20,24 @@
 					</div>
 				</div>
 				<!------------轮播结束---------------->
-				<!--<p class="title">{{data.item.title}}</p>-->
-				<!--<p class="price">￥{{data.item.nowPrice}}</p>-->
+				<p class="title">{{title}}</p>
+				<p class="price">￥{{price}}</p>
 				<!--<div class="desc" v-html="data.desc"></div>-->
+				<ul class="desc">
+					<li><span>商品图文详情（建议在wifi下查看）</span><i class="iconfont icon-xiayiye1"></i></li>
+					<li><span>商品小视频（建议在wifi下查看）</span><i class="iconfont icon-xiayiye1"></i></li>
+					<li><span>商品晒单(1)（建议在wifi下查看）</span><i class="iconfont icon-xiayiye1"></i></li>
+					<li><span>商品评论(1)（建议在wifi下查看）</span><i class="iconfont icon-xiayiye1"></i></li>
+					<li><span>联系客服</span><i class="iconfont icon-xiayiye1"></i></li>
+				</ul>
 			</div>
 			<div class="control">
-
+				<span>立即购买</span>
+				<span>加入购物车</span>
+				<div id="cartList">
+					<div><i class="iconfont icon-gouwuche"></i></div>
+					<a class="count">0</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -38,6 +50,7 @@
 		data() {
 			return {
 				data: {},
+				price:0,
 				imgList: [],
 				title: '',
 				price: 0
@@ -61,8 +74,9 @@
 				}
 			}).then(function(res) {
 				if(res.body.code === 0) {
-					_this.data = res.body.data.showapi_res_body;
-					_this.imgList = _this.data.item.imgList.slice(0);
+					_this.price = res.body.data.showapi_res_body.item.nowPrice;
+					_this.title =  res.body.data.showapi_res_body.item.title;
+					_this.imgList = res.body.data.showapi_res_body.item.imgList.slice(0);
 				}
 				console.log(_this.data)
 				Toast({
@@ -92,10 +106,12 @@
 	@function R($px) {
 		@return $px/$ui-width*7.2rem;
 	}
-	#wrapper{
-		position: relative;		
+	
+	#wrapper {
+		position: relative;
 	}
-	#back{
+	
+	#back {
 		display: block;
 		position: fixed;
 		width: R(50px);
@@ -104,9 +120,9 @@
 		background-color: #FC6E51;
 		z-index: 1000;
 		left: R(20px);
-		top:R(30px);
+		top: R(30px);
 		line-height: R(50px);
-		.iconfont{
+		.iconfont {
 			position: absolute;
 			left: 0;
 			top: R(2px);
@@ -114,16 +130,74 @@
 			color: white;
 		}
 	}
+	
 	#contents {
-		flex: 1;
+		height: 100%;
 		display: flex;
 		flex-direction: column;
+		//操作部分
 		.control {
-			height: R(120px);
+			height: R(110px);
+			display: flex;
+			overflow: hidden;
+			span{
+				display: inline-block;
+				font-size: R(30px);
+				height: R(100px);
+				width: R(280px);
+				line-height: R(100px);
+				text-align: center;
+				color: white;
+				margin-top: R(10px);
+			}
+			span:first-child{
+				background-color: #FC6E51;
+				margin-right: R(20px);
+				margin-left: R(20px);
+			}
+			span:nth-of-type(2){
+				background-color: #48CFAD;
+			}
+			#cartList{
+				width: R(100px);
+				height: R(100px);
+				position: relative;
+				left: R(10px);
+				
+				.iconfont{
+					font-size: R(80px);
+					color: #EC6B51;
+				}
+				.count{
+					display: block;
+					position: absolute;
+					width: R(40px);
+					height: R(40px);
+					border-radius: 50%;
+					font-size: R(30px);
+					text-align: center;
+					right: 0;
+					top: 0;
+					background: #ED5565;
+					color: white;
+					line-height: R(40px);
+				}
+			}
 		}
 		.con {
 			flex: 1;
 			overflow-y: auto;
+			.desc{
+				li{
+					padding:0 R(20px);
+					border-bottom:R(2px) solid #f5f7fa;
+					height: R(80px);
+					line-height: R(80px);
+					font-size: R(26px);
+					display: flex;
+					justify-content: space-between;
+				}
+			}
 		}
 		.title {
 			font-size: R(36px);
@@ -138,12 +212,7 @@
 			line-height: R(80px);
 			border-bottom: R(2px) solid #E6E9ED;
 		}
-		.desc {
-			width: 100% !important;
-			* {
-				width: 100%;
-			}
-		}
+		
 	}
 	
 	#swiper {

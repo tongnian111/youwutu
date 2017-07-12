@@ -4,16 +4,29 @@
 		<div id="contents">
 			<div class="zhang">
 				账号
+<<<<<<< HEAD
 				<input type="text" placeholder="请输入11位手机号" ref="username">
 			</div>
 			<div class="mi">
 				密码
 				<input type="password" placeholder="请输入6~20位的密码" ref="psw">
+=======
+				<input type="text" @blur="checkUsername" v-model="username" placeholder="请输入11位手机号">
+			</div>
+			<div class="mi">
+				密码
+				<input type="password" @keyup="checkPass" v-model="password" placeholder="请输入6~20位的密码">
+>>>>>>> tn
 				<p>
 					<a href="#/my/register">忘记密码</a>
 				</p>
+<<<<<<< HEAD
 				<button class="denglu" @click="logg">登陆</button>
 				<router-link to="/register" class="zhuce">注册</router-link>
+=======
+				<mt-button @click="login" size="large" type="primary" plain :disabled="disabled">登陆</mt-button>
+				<mt-button @click="toRegister" size="large" type="primary" plain style="margin-top: 20px;">注册</mt-button>
+>>>>>>> tn
 			</div>
 		</div>
 	</div>
@@ -22,6 +35,8 @@
 
 <script>
 	import TopHeader from "../../components/public/TopHeader";
+	import { Toast, Indicator } from "mint-ui";
+	
 	let topArr = [{ //第一个参数
 		icon: "icon-fanhui", //iconfont图标
 		text: "", //文字
@@ -41,13 +56,20 @@
 
 	export default {
 		name: 'login',
-		components:{TopHeader},
+		components: {
+			TopHeader
+		},
 		data() {
 			return {
-				headerParams: topArr
+				headerParams: topArr,
+				username: "",
+				password: "",
+				flag: [0, 0],
+				disabled:true
 			}
 		},
 		methods: {
+<<<<<<< HEAD
 			logg:function(){
 	      		this.$http.post('/api/user/login', {
 	              username: this.$refs.username.value,
@@ -63,6 +85,44 @@
 	              // error callback
 	            });
     }
+=======
+			toRegister: function() {
+				this.$router.push('/register');
+			},
+			checkUsername: function() {
+				let re = /^1[34578]\d{9}$/;
+				if(re.test(this.username)){
+					this.flag.splice(0, 1, 1);
+				}else{
+					this.flag.splice(0, 1, 0);
+					Toast({
+						message: "用户名格式不正确",
+						position: 'middle',
+						duration: 3000
+					});
+				}
+			},
+			checkPass: function() {
+				let re = /^[a-zA-Z0-9]{6,20}$/;
+				if(re.test(this.password)) {
+					this.flag.splice(1, 1, 1);
+				} else {
+					this.flag.splice(1, 1, 0);
+				}
+			},login:function(){
+				let _this = this;
+				this.$http.post("/youwutu/user/login",{username:this.username,password:this.password}).then(function(res){
+					if(res.body.code == 0){
+						_this.$router.push('/my');
+					}
+					Toast({
+						message: res.body.message,
+						position: 'bottom',
+						duration: 3000
+					});
+				});
+			}
+>>>>>>> tn
 		},
 		beforeMount: function() {
 			//Dom加载前自动调用
@@ -71,6 +131,20 @@
 		mounted: function() {
 			//Dom加载完成自动调用此方法
 
+		},
+		watch: {
+			flag: {
+				handler: function(newVal) {
+					for(var i = 0; i < newVal.length; i++) {
+						if(newVal[i] == 0) {
+							this.disabled = true;
+							return;
+						}
+					}
+					this.disabled = false;
+				},
+				deep: true
+			}
 		}
 	}
 </script>
