@@ -8,15 +8,17 @@
 					<p>收货人：请填写</p>
 					<p>请填写收货地址</p>
 				</div>
-				<div class="cartList" v-if="list.length">
-					<img src="//img2.ch999img.com/pic/product/216x216/20170421144123524.jpg">
-					<p class="title">Apple iPhone 7 Plus (A1699) 32G 银色</p>
+				<div class="cartList" v-for="(item,index) in list" v-if="list.length">
+					<a :href="'#/phonedetail?id='+item.proid">
+						<img :src="item.img">
+					</a>
+					<p class="title">{{item.name}}</p>
 					<div class="count_box">
 						<span>购买数量 </span>
-						<span class="reduce">-</span>
-						<input type="text" v-model="count"></input>
-						<span class="add">+</span>
-						<span class="price">￥5699.00</span>
+						<span class="reduce" @click="reduce($event)" :data-proid = "item.proid" :data-index="index">-</span>
+						<input type="number" min="1" v-model="list[index].count"></input>
+						<span class="add" @click="add($event)" :data-proid = "item.proid" :data-index="index">+</span>
+						<span class="price">{{item.price}}</span>
 					</div>
 				</div>
 				<div v-else class="kongcart">
@@ -26,9 +28,9 @@
 		</div>
 		<div class="footer">
 			<span>共</span>
-			<span class="count">2</span>
+			<span class="count">{{list.length}}</span>
 			<span>件商品   合计</span>
-			<span class="price">$796.00</span>
+			<span class="price">{{totalMoney}}</span>
 			<span>元</span>
 			<a class="calculateMoney">去结算</a>
 		</div>
@@ -37,6 +39,7 @@
 
 <script>
 	import TopHeader from "../../components/public/TopHeader";
+	import { Toast, Indicator,MessageBox} from "mint-ui";
 	let topArr = [{ //第一个参数
 		icon: "icon-fanhui", //iconfont图标
 		text: "", //文字
@@ -60,20 +63,72 @@
 		data() {
 			return {
 				headerParams: topArr,
-				count:1,
-				list:[]
+				list:[],
+				totalMoney:0
 			}
 		},
 		methods: {
-			
+			updateCart:function(type,index,proid){
+				//添加数量操作
+				if(type === 1){
+					this.list[index].count += 1
+				}
+				//减小操作
+				if(type === -1){
+					if(this.list[index].count <=1){
+						Toast({
+							message: "最少为1件哦~~~",
+							position: 'middle',
+							duration: 3000
+						});
+						return;
+					}
+					this.list[index].count -= 1
+				}
+				this.$http.post("/youwutu/cart/insertToCart",{proid:proid,count:this.list[index].count,type:'update'}).then(res=>{
+					if(res.body.code !==0){
+						Toast({
+							message: "添加失败！",
+							position: 'middle',
+							duration: 3000
+						});
+					}
+				})
+			},reduce:function(e){
+				this.updateCart(-1,e.target.getAttribute('data-index'),e.target.getAttribute('data-proid'))
+			},add:function(e){
+				this.updateCart(1,e.target.getAttribute('data-index'),e.target.getAttribute('data-proid'))
+			}
 		},
 		beforeMount: function() {
 			//Dom加载前自动调用
-
+			var _this = this;
+			this.$http.get("/youwutu/cart/getCartList").then(res=>{
+//				console.log(res)
+				if(res.body.code === 0){
+					_this.list = res.body.data
+				}
+				Toast({
+					message: res.body.message,
+					position: 'middle',
+					duration: 3000
+				});
+			})
 		},
 		mounted: function() {
 			//Dom加载完成自动调用此方法
 
+		},watch:{
+			list: {
+				handler: function(newVal) {
+					let item = 0;
+					for(var i = 0; i < newVal.length; i++) {
+						item+=parseFloat(newVal[i].price.replace("￥",''))*parseFloat(newVal[i].count)
+					}
+					this.totalMoney = item.toFixed(2);
+				},
+				deep: true
+			}
 		}
 	}
 </script>
@@ -171,7 +226,7 @@
 						color: #fc6e51;
 						border:0;
 					}
-					input[type=text]{
+					input[type=number]{
 						width: R(80px);
 						height: R(40px);
 						text-align: center;

@@ -33,10 +33,14 @@
 			</div>
 			<div class="control">
 				<span>立即购买</span>
-				<span>加入购物车</span>
+				<span @click="addToCart">加入购物车</span>
 				<div id="cartList">
-					<div><i class="iconfont icon-gouwuche"></i></div>
-					<a class="count">0</a>
+					<div>
+						<a href="#/cart">
+							<i class="iconfont icon-gouwuche"></i>
+						</a>
+					</div>
+					<a class="count">{{cartList.length}}</a>
 				</div>
 			</div>
 		</div>
@@ -53,16 +57,33 @@
 				price:0,
 				imgList: [],
 				title: '',
-				price: 0
+				price: 0,
+				cartList:[],
+				proid:0
 			}
 		},
 		methods: {
-
+			addToCart:function(){
+				this.$http.post('/youwutu/cart/insertToCart',{proid:this.proid}).then(res=>{
+					Toast({
+						message: res.body.message,
+						position: 'middle',
+						duration: 3000
+					});
+				})
+			}
 		},
 		beforeMount: function() {
-
+			var _this = this;
+			this.$http.get("/youwutu/cart/getCount").then(res=>{
+//				console.log(res);
+				_this.cartList = res.body.data;
+//				console.log(_this.cartList)
+			})
+			
 		},
 		mounted: function() {
+			this.proid = this.$route.query.id;
 			let _this = this;
 			Indicator.open({
 				text: '加载中...',

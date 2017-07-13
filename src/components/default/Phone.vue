@@ -25,7 +25,7 @@
 								<span>已销售</span>
 								<span>{{item.xiaoliang}}</span>
 								<span>件</span>
-								<i @click="addToCart($event)" class="iconfont icon-gouwuche" :data-proid="item.proid" :data-price="item.price.substring(1)"></i>
+								<i @click="addToCart($event)" class="iconfont icon-gouwuche" :data-proid="item.proid" :data-price="item.price"></i>
 							</div>
 						</div>
 					</div>
@@ -38,7 +38,7 @@
 				您已添加<span>{{cartList.length}}</span>件商品到购物车共
 				<span>￥{{totalMoney}}</span>
 			</div>
-			<a>去购物车</a>
+			<a href="#/cart">去购物车</a>
 		</div>
 	</div>
 </template>
@@ -162,17 +162,21 @@
 				let  len = this.cartList.length;
 				for (let i=0;i<len;i++) {
 					if(this.cartList[i].proid == proid){
-						this.cartList[i].num = this.cartList[i].num+1;
+						this.cartList[i].count = this.cartList[i].count+1;
 						return;
 					}
 				}
-				this.cartList.push({proid:proid,num:1,price:price});
+				this.cartList.push({proid:proid,count:1,price:price});
 			}
 		},
 		beforeMount: function() {
 			//Dom加载前自动调用
 			var _this = this;
-			
+			this.$http.get("/youwutu/cart/getCount").then(res=>{
+//				console.log(res);
+				_this.cartList = res.body.data;
+//				console.log(_this.cartList)
+			})
 		},
 		mounted: function() {
 			//Dom加载完成自动调用此方法
@@ -187,7 +191,7 @@
 				handler: function(newVal) {
 					let item = 0;
 					for(var i = 0; i < newVal.length; i++) {
-						item+=parseFloat(newVal[i].price)*parseFloat(newVal[i].num)
+						item+=parseFloat(newVal[i].price.replace("￥",''))*parseFloat(newVal[i].count)
 					}
 					this.totalMoney = item.toFixed(2);
 				},
