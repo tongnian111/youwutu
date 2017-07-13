@@ -25,7 +25,7 @@
 								<span>已销售</span>
 								<span>{{item.xiaoliang}}</span>
 								<span>件</span>
-								<i @click="addToCart($event)" class="iconfont icon-gouwuche" :data-proid="item.proid"></i>
+								<i @click="addToCart($event)" class="iconfont icon-gouwuche" :data-proid="item.proid" :data-price="item.price.substring(1)"></i>
 							</div>
 						</div>
 					</div>
@@ -33,13 +33,19 @@
 				</mt-loadmore>
 			</ul>
 		</div>
-		<div class="cartList"></div>
+		<div class="cartList">
+			<div>
+				您已添加<span>{{cartList.length}}</span>件商品到购物车共
+				<span>￥{{totalMoney}}</span>
+			</div>
+			<a>去购物车</a>
+		</div>
 	</div>
 </template>
 
 <script>
 	import { mapGetters, mapActions } from 'vuex';
-	import { Toast, Indicator } from "mint-ui";
+	import { Toast, Indicator,MessageBox} from "mint-ui";
 	import TopHeader from "../../components/public/TopHeader";
 		//定义一个头部参数
 	let topArr = [{ //第一个参数
@@ -71,7 +77,9 @@
 				headerParams: topArr, //头部信息参数
 				allLoaded: false,
 				topPullText: "",
-				bottomPullText: ""
+				bottomPullText: "",
+				cartList:[],
+				totalMoney:0
 			}
 		},
 		methods: {
@@ -128,7 +136,37 @@
 				this.loadData();
 			},
 			addToCart:function(e){
-				alert(e.target.getAttribute('data-proid'))
+				//判断是否登录
+				if(!this.$cookie.get('uid')){
+					let _this = this;
+					MessageBox.confirm('您还没有登录，是否立即登录?', '提示').then(action => {
+						if(action) {
+							_this.$router.push('/login');
+						}
+					}).catch(err => {
+						
+					})
+					return;
+				}
+				let proid = e.target.getAttribute('data-proid');
+				//添加到数据库中
+				this.$http.post('/youwutu/cart/insertToCart',{proid:proid}).then(res=>{
+					Toast({
+						message: res.body.message,
+						position: 'middle',
+						duration: 3000
+					});
+				})
+				let price = e.target.getAttribute('data-price');
+				//判断是否存在
+				let  len = this.cartList.length;
+				for (let i=0;i<len;i++) {
+					if(this.cartList[i].proid == proid){
+						this.cartList[i].num = this.cartList[i].num+1;
+						return;
+					}
+				}
+				this.cartList.push({proid:proid,num:1,price:price});
 			}
 		},
 		beforeMount: function() {
@@ -143,7 +181,18 @@
 			
 		},
 		destoryed: function() {
-			console.log("卸载手机页面")
+			//console.log("卸载手机页面")
+		},watch:{
+			cartList: {
+				handler: function(newVal) {
+					let item = 0;
+					for(var i = 0; i < newVal.length; i++) {
+						item+=parseFloat(newVal[i].price)*parseFloat(newVal[i].num)
+					}
+					this.totalMoney = item.toFixed(2);
+				},
+				deep: true
+			}
 		}
 	}
 </script>
@@ -231,6 +280,35 @@
 					}
 				}
 			}
+		}
+	}
+	.cartList{
+		width: 100%;
+		height: R(100px);
+		border-top: R(2px) solid #ccc;
+		display: flex;
+		div{
+			flex: 1;
+			font-size: R(20px);
+			height: 100%;
+			line-height: R(100px);
+			text-indent: 1em;
+			span{
+				color: #ED5565;
+				font-size: R(30px);
+			}
+		}
+		a{
+			display: inline-block;
+			width: R(138px);
+			height: R(80px);
+			text-align: center;
+			line-height: R(80px);
+			color: white;
+			background-color: #ED5565;
+			font-size: R(32px);
+			margin-top: R(10px);
+			margin-right: R(20px);
 		}
 	}
 	/*.mint-loadmore-top,.mint-loadmore-bottom{

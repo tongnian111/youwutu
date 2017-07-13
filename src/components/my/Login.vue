@@ -83,7 +83,7 @@
 				let _this = this;
 				this.$http.post("/youwutu/user/login",{username:this.username,password:this.password}).then(function(res){
 					if(res.body.code == 0){
-						_this.$router.push('/my');
+						_this.$router.go(-1);
 					}
 					Toast({
 						message: res.body.message,
