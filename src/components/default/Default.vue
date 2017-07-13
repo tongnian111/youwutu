@@ -6,19 +6,9 @@
 			<div id="swiper">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide">
+						<div v-for="item in dataList" v-if="item.type==1" class="swiper-slide">
 							<a>
-								<img src="http://119.29.101.67/youwutu/img/default_banner_1.png" />
-							</a>
-						</div>
-						<div class="swiper-slide">
-							<a>
-								<img src="http://119.29.101.67/youwutu/img/default_banner_2.jpg" />
-							</a>
-						</div>
-						<div class="swiper-slide">
-							<a>
-								<img src="http://119.29.101.67/youwutu/img/default_banner_3.jpg" />
+								<img :src="'http://119.29.101.67/youwutu/img/'+item.imgsrc" />
 							</a>
 						</div>
 					</div>
@@ -26,116 +16,42 @@
 				</div>
 			</div>
 			<ul class="listNav">
-				<li>
-					<a href="#/phone">
-						<img src="http://119.29.101.67/youwutu/img/shouji.png" />
-						<span>手机</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<img src="http://119.29.101.67/youwutu/img/xiangbao.png" />
-						<span>箱包</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<img src="http://119.29.101.67/youwutu/img/fuzhuang.png" />
-						<span>服装</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<img src="http://119.29.101.67/youwutu/img/jiadian.png" />
-						<span>家电</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<img src="http://119.29.101.67/youwutu/img/diannao.png" />
-						<span>电脑</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<img src="http://119.29.101.67/youwutu/img/shuma.png" />
-						<span>数码</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<img src="http://119.29.101.67/youwutu/img/huwai.png" />
-						<span>户外</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<img src="http://119.29.101.67/youwutu/img/quanbu.png" />
-						<span>全部</span>
-					</a>
+				<li v-for="item in dataList" v-if="item.type==2">
+					<router-link :to="item.router">
+						<img :src="'http://119.29.101.67/youwutu/img/'+item.imgsrc" />
+						<span>{{item.name}}</span>
+					</router-link>
 				</li>
 			</ul>
 			<div class="banner">
-				<a>
-					<img src="http://119.29.101.67/youwutu/img/default_banner_1.png" />
+				<a v-for="(item,index) in bannder" v-if="index==0">
+					<img :src="'http://119.29.101.67/youwutu/img/'+item.imgsrc" />
 				</a>
 			</div>
 			<!---折扣--->
 			<ul class="discount_list">
-				<li>
+				<li v-for="(item,index) in zhekou" v-if="index < 3">
 					<a>
-						<img src="http://119.29.101.67/youwutu/img/default_erji_1.png" />
+						<img :src="'http://119.29.101.67/youwutu/img/'+item.imgsrc" />
 					</a>
 					<div class="discount_price">
-						3折起
-					</div>
-				</li>
-				<li>
-					<a>
-						<img src="http://119.29.101.67/youwutu/img/default_yinxiang_1.png" />
-					</a>
-					<div class="discount_price">
-						3折起
-					</div>
-				</li>
-				<li>
-					<a>
-						<img src="http://119.29.101.67/youwutu/img/default_xiangbao1.png" />
-					</a>
-					<div class="discount_price">
-						3折起
+						{{item.price}}
 					</div>
 				</li>
 			</ul>
 			<div class="jingxuan">
-				<a>
-					<img src="http://119.29.101.67/youwutu/img/default_jingxuan_1.png" />
+				<a v-for="(item,index) in bannder" v-if="index==1">
+					<img :src="'http://119.29.101.67/youwutu/img/'+item.imgsrc" />
 				</a>
 			</div>
 			<!---精选--->
 			<ul class="selected_list">
-				<li>
+				<li v-for="(item,index) in zhekou" v-if="index >= 3 && index <6">
 					<a>
-						<img src="http://119.29.101.67/youwutu/img/default_wallet_1.png" />
+						<img :src="'http://119.29.101.67/youwutu/img/'+item.imgsrc" />
 					</a>
 					<div class="discount_price">
-						￥259.00
-					</div>
-				</li>
-				<li>
-					<a>
-						<img src="http://119.29.101.67/youwutu/img/default_wallet_2.png" />
-					</a>
-					<div class="discount_price">
-						￥599.00
-					</div>
-				</li>
-				<li>
-					<a>
-						<img src="http://119.29.101.67/youwutu/img/default_wallet_3.png" />
-					</a>
-					<div class="discount_price">
-						￥899.00
+						{{item.price}}
 					</div>
 				</li>
 			</ul>
@@ -178,6 +94,8 @@
 		data() {
 			return {
 				dataList: [],
+				bannder:[],
+				zhekou:[],
 				headerParams: topArr, //头部信息参数
 				allLoaded: false,
 				topPullText: "",
@@ -192,17 +110,37 @@
 			//	  }
 			//加载数据
 			loadData: function(id = "342568ABB06F403EA40B3E31FFF49DA5") {
+				Indicator.open({
+					text: '加载中...',
+					spinnerType: 'fading-circle'
+				});
 				var _this = this;
-				this.$http.get('/rightbe/api/system/ishare.do?callback=&id=' + id + '&[object%20Object]&_=1499476098428', {
-
-				}).then(response => {
-					// get body data
-					//					this.someData = response.body;
-					console.log(JSON.parse(response.body.substring(1, response.body.length - 2)))
-					let itemData = JSON.parse(response.body.substring(1, response.body.length - 2));
-					_this.dataList = _this.dataList.concat(itemData)
+				this.$http.get('/youwutu/shouye/getDefaultInfo').then(res => {
+					if(res.body.code === 0){
+						_this.dataList = res.body.data;
+						//bannder
+						_this.bannder.splice(0);
+						//折扣
+						_this.zhekou.splice(0);
+						for (var i=0;i<res.body.data.length;i++) {
+							if(res.body.data[i].type == 3){
+								_this.bannder.push(res.body.data[i])
+							}
+							if(res.body.data[i].type == 4){
+								_this.zhekou.push(res.body.data[i])
+							}
+						}
+						
+					}
+					Toast({
+						message: res.body.message,
+						position: 'bottom',
+						duration: 3000
+					});
+//					console.log(res);
+					Indicator.close();
 				}, response => {
-					// error callback
+					Indicator.close();
 				});
 			},
 			loadSwiper: function() {
