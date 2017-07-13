@@ -12,7 +12,7 @@
 				<li><i class="iconfont icon-qianbao1 qianzi"></i>钱包<i class="iconfont icon-xiayiye1 houzi"></i></li>
 				<li>
 					<router-link to="/cart">
-						<i class="iconfont icon-gouwuche1 qianzi"></i>购物车<i class="iconfont icon-xiayiye1 houzi"></i>
+					<i class="iconfont icon-gouwuche1 qianzi"></i>购物车<i class="iconfont icon-xiayiye1 houzi"></i>
 					</router-link>
 				</li>
 				<li><i class="iconfont icon-icon_user-defined qianzi"></i>购物记录<i class="iconfont icon-xiayiye1 houzi"></i></li>

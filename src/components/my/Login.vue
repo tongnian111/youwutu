@@ -23,7 +23,7 @@
 <script>
 	import TopHeader from "../../components/public/TopHeader";
 	import { Toast, Indicator } from "mint-ui";
-
+	
 	let topArr = [{ //第一个参数
 		icon: "icon-fanhui", //iconfont图标
 		text: "", //文字
@@ -52,7 +52,7 @@
 				username: "",
 				password: "",
 				flag: [0, 0],
-				disabled: true
+				disabled:true
 			}
 		},
 		methods: {
@@ -61,9 +61,9 @@
 			},
 			checkUsername: function() {
 				let re = /^1[34578]\d{9}$/;
-				if(re.test(this.username)) {
+				if(re.test(this.username)){
 					this.flag.splice(0, 1, 1);
-				} else {
+				}else{
 					this.flag.splice(0, 1, 0);
 					Toast({
 						message: "用户名格式不正确",
@@ -79,14 +79,10 @@
 				} else {
 					this.flag.splice(1, 1, 0);
 				}
-			},
-			login: function() {
+			},login:function(){
 				let _this = this;
-				this.$http.post("/youwutu/user/login", {
-					username: this.username,
-					password: this.password
-				}).then(function(res) {
-					if(res.body.code == 0) {
+				this.$http.post("/youwutu/user/login",{username:this.username,password:this.password}).then(function(res){
+					if(res.body.code == 0){
 						_this.$router.push('/my');
 					}
 					Toast({

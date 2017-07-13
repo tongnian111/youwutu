@@ -55,33 +55,31 @@
 		data() {
 			return {
 				headerParams: topArr, //头部信息参数
-				codeSrc: "http://10.2.153.97/youwutuphp/youwutu/user/createcode",
-				username: '',
-				nickName: '',
-				password: '',
-				disabled: true,
-				code: '',
-				flag: [0, 0, 1, 0]
+				codeSrc:"http://10.2.153.97/youwutuphp/youwutu/user/createcode",
+				username:'',
+				nickName:'',
+				password:'',
+				disabled:true,
+				code:'',
+				flag:[0,0,1,0]
 			}
 		},
 		methods: {
-			getCode: function() {
-				this.codeSrc = "http://10.2.153.97/youwutuphp/youwutu/user/createcode?t=" + new Date();
+			getCode:function(){
+				this.codeSrc = "http://10.2.153.97/youwutuphp/youwutu/user/createcode?t="+new Date();
 				var _this = this;
-				setTimeout(function() {
+				setTimeout(function(){
 					_this.code = _this.$cookie.get('code');
-					_this.checkCode();
-				}, 1000)
+				 	 _this.checkCode();
+				},1000)
 			},
-			checkUsername: function() {
+			checkUsername:function(){
 				let _this = this;
-				this.$http.post("/youwutu/user/checkuser", {
-					username: this.username
-				}).then(function(res) {
-					if(res.body.code === 0) {
-						_this.flag.splice(0, 1, 1);
-					} else {
-						_this.flag.splice(0, 1, 0);
+				this.$http.post("/youwutu/user/checkuser",{username:this.username}).then(function(res){
+					if(res.body.code===0){
+						_this.flag.splice(0,1,1);
+					}else{
+						_this.flag.splice(0,1,0);
 					}
 					Toast({
 						message: res.body.message,
@@ -89,42 +87,36 @@
 						duration: 3000
 					});
 				})
-			},
-			checkCode: function() {
-				if(this.code === this.$cookie.get('code')) {
-					this.flag.splice(1, 1, 1);
-				} else {
-					this.flag.splice(1, 1, 0);
+			},checkCode:function(){
+				if(this.code === this.$cookie.get('code')){
+					this.flag.splice(1,1,1);
+				}else{
+					this.flag.splice(1,1,0);
 				}
 			},
-			checkNickName: function() {
-				if(this.nickName.trim().length <= 10) {
-					this.flag.splice(2, 1, 1);
-				} else {
-					this.flag.splice(2, 1, 0);
+			checkNickName:function(){
+				if(this.nickName.trim().length <= 10){
+					this.flag.splice(2,1,1);
+				}else{
+					this.flag.splice(2,1,0);
 				}
 			},
-			checkPass: function() {
+			checkPass:function(){
 				let re = /^[a-zA-Z0-9]{6,20}$/;
-				if(re.test(this.password)) {
-					this.flag.splice(3, 1, 1);
-				} else {
-					this.flag.splice(3, 1, 0);
+				if(re.test(this.password)){
+					this.flag.splice(3,1,1);
+				}else{
+					this.flag.splice(3,1,0);
 				}
-			},
-			register: function() {
+			},register:function(){
 				Indicator.open({
 					text: '注册中...',
 					spinnerType: 'fading-circle'
 				});
 				var _this = this;
-				this.$http.post("/youwutu/user/register", {
-					username: this.username,
-					password: this.password,
-					nickname: this.nickName
-				}).then(function(res) {
+				this.$http.post("/youwutu/user/register",{username:this.username,password:this.password,nickname:this.nickName}).then(function(res){
 					console.log(res);
-					if(res.body.code === 0) {
+					if(res.body.code === 0){
 						_this.$router.push('/my');
 					}
 					Toast({
@@ -142,23 +134,22 @@
 		mounted: function() {
 			//Dom加载完成自动调用此方法
 			var _this = this;
-			setTimeout(function() {
+			setTimeout(function(){
 				_this.code = _this.$cookie.get('code');
-				_this.checkCode();
-			}, 1000)
-		},
-		watch: {
-			flag: {
-				handler: function(newVal) {
-					for(var i = 0; i < newVal.length; i++) {
-						if(newVal[i] == 0) {
+			 	 _this.checkCode();
+			},1000)
+		},watch:{
+			flag:{
+				handler:function(newVal){
+					for(var i=0;i<newVal.length;i++){
+						if(newVal[i] == 0){
 							this.disabled = true;
 							return;
 						}
 					}
 					this.disabled = false;
 				},
-				deep: true
+				deep:true
 			}
 		}
 	}
@@ -194,7 +185,7 @@
 			input {
 				width: R(400px);
 			}
-			#code {
+			#code{
 				float: right;
 				height: R(79px);
 				line-height: R(79px);

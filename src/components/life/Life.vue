@@ -115,7 +115,7 @@
 						that.userInfo.push(data[i][1]);
 						that.list.push(data[i].splice(3));
 					}
-//					console.log(that.list)
+					console.log(that.list)
 					Indicator.close();
 					Toast({
 						message: response.body.message,
