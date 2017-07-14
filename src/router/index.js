@@ -28,6 +28,7 @@ import Register from '@/components/my/Register';
 import Login from '@/components/my/Login';
 import Qrcode from '@/components/my/Qrcode';
 import Cart from '@/components/my/Cart';
+
 /*****************我的引入结束**********************/
 
 /******************搜索页面开始*********************/

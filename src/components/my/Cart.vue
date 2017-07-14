@@ -14,11 +14,12 @@
 					</a>
 					<p class="title">{{item.name}}</p>
 					<div class="count_box">
-						<span>购买数量 </span>
+						<span>数量:</span>
 						<span class="reduce" @click="reduce($event)" :data-proid = "item.proid" :data-index="index">-</span>
 						<input type="number" min="1" v-model="list[index].count"></input>
 						<span class="add" @click="add($event)" :data-proid = "item.proid" :data-index="index">+</span>
 						<span class="price">{{item.price}}</span>
+						<a class="del" @click="del($event)" :data-proid = "item.proid" :data-index="index">删除</a>
 					</div>
 				</div>
 				<div v-else class="kongcart">
@@ -40,6 +41,7 @@
 <script>
 	import TopHeader from "../../components/public/TopHeader";
 	import { Toast, Indicator,MessageBox} from "mint-ui";
+
 	let topArr = [{ //第一个参数
 		icon: "icon-fanhui", //iconfont图标
 		text: "", //文字
@@ -98,6 +100,18 @@
 				this.updateCart(-1,e.target.getAttribute('data-index'),e.target.getAttribute('data-proid'))
 			},add:function(e){
 				this.updateCart(1,e.target.getAttribute('data-index'),e.target.getAttribute('data-proid'))
+			},del:function(e){
+				var _this = this;
+				this.$http.post("/youwutuphp/youwutu/cart/insertToCart",{proid:e.target.getAttribute('data-proid'),count:0,type:'del'}).then(res=>{
+					if(res.body.code === 0){
+						_this.list.splice(e.target.getAttribute('data-index'),1);
+					}
+					Toast({
+						message: res.body.message,
+						position: 'middle',
+						duration: 3000
+					});
+				})
 			}
 		},
 		beforeMount: function() {
@@ -231,6 +245,15 @@
 						height: R(40px);
 						text-align: center;
 						outline: none;
+					}
+					.del{
+						white-space: nowrap;
+						padding: R(5px) R(10px);
+						background-color: rgba(255,0,0,.5);
+						line-height: R(40px);
+						color: white;
+						border-radius: R(5px);
+						margin-left: R(10px);
 					}
 				}
 			}
