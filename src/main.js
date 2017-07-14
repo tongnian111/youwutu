@@ -10,7 +10,7 @@ Vue.use(VueResource);
 import VueCookie from 'vue-cookie';
 Vue.use(VueCookie);
 //注册mint-ui
-import {CellSwipe,Loadmore,Popup,Button,Navbar, TabItem, TabContainer, TabContainerItem,Progress} from "mint-ui";
+import {Checklist,Loadmore,Popup,Button,Navbar, TabItem, TabContainer, TabContainerItem,Progress} from "mint-ui";
 //注册下拉刷新组件
 Vue.component(Loadmore.name, Loadmore);
 Vue.component(Popup.name, Popup);
@@ -20,7 +20,7 @@ Vue.component(TabItem.name, TabItem);
 Vue.component(TabContainer.name, TabContainer);
 Vue.component(TabContainerItem.name, TabContainerItem);
 Vue.component(Progress.name, Progress);
-Vue.component(CellSwipe.name, CellSwipe);
+Vue.component(Checklist.name, Checklist);
 //引入  store 
 import store from './store/store.js';
 
