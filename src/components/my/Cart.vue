@@ -164,6 +164,10 @@
 		beforeMount: function() {
 			//Dom加载前自动调用
 			var _this = this;
+			Indicator.open({
+				text: '加载中...',
+				spinnerType: 'fading-circle'
+			});
 			this.$http.get("/youwutuphp/youwutu/cart/getCartList").then(res => {
 				//				console.log(res)
 				if(res.body.code === 0) {
@@ -178,6 +182,7 @@
 						duration: 3000
 					});
 				}
+				Indicator.close();
 			})
 		},
 		mounted: function() {
