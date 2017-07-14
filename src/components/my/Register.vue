@@ -55,7 +55,7 @@
 		data() {
 			return {
 				headerParams: topArr, //头部信息参数
-				codeSrc:"http://10.2.153.97/youwutuphp/youwutu/user/createcode",
+				codeSrc:"/youwutuphp/youwutu/user/createcode",
 				username:'',
 				nickName:'',
 				password:'',
@@ -66,7 +66,10 @@
 		},
 		methods: {
 			getCode:function(){
-				this.codeSrc = "http://10.2.153.97/youwutuphp/youwutu/user/createcode?t="+new Date();
+				this.codeSrc = "/youwutuphp/youwutu/user/createcode?t="+new Date();
+				this.$http.get("/youwutuphp/youwutu/user/createcode?t="+new Date()).then(res=>{
+					
+				})
 				var _this = this;
 				setTimeout(function(){
 					_this.code = _this.$cookie.get('code');
