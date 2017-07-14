@@ -64,7 +64,7 @@
 		},
 		methods: {
 			addToCart:function(){
-				this.$http.post('/youwutu/cart/insertToCart',{proid:this.proid}).then(res=>{
+				this.$http.post('/youwutuphp/youwutu/cart/insertToCart',{proid:this.proid}).then(res=>{
 					Toast({
 						message: res.body.message,
 						position: 'middle',
@@ -75,7 +75,7 @@
 		},
 		beforeMount: function() {
 			var _this = this;
-			this.$http.get("/youwutu/cart/getCount").then(res=>{
+			this.$http.get("/youwutuphp/youwutu/cart/getCount").then(res=>{
 //				console.log(res);
 				_this.cartList = res.body.data;
 //				console.log(_this.cartList)
@@ -89,7 +89,7 @@
 				text: '加载中...',
 				spinnerType: 'fading-circle'
 			});
-			this.$http.get("/youwutu/getpro/getPhoneDetail", {
+			this.$http.get("/youwutuphp/youwutu/getpro/getPhoneDetail", {
 				params: {
 					id: this.$route.query.id
 				}

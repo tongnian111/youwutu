@@ -29,7 +29,7 @@
 			<div class="main">
 
 				<div class="box" v-for="item in list">
-					<img :src="item.src" class="img2">
+					<img :src="'http://119.29.101.67/youwutu/img/'+item.src" class="img2">
 					<p class="p1">积分：<span>{{item.itegral}}</span></p>
 
 					<mt-progress :value="item.itegral1/item.itegral2*100" :bar-height="5" style="top:-3px;margin:0;padding:0"></mt-progress>
@@ -45,13 +45,9 @@
 </template>
 
 <script>
-	//	import Person from './Person';
-	//	import Jifen from './Jifen';
-	//	import Tiyan from './Tiyan';
-	//	import Dingdan from './Dingdan';
 	import TopHeader from "../../components/public/TopHeader";
 	import FooterNav from "../../components/public/FooterNav";
-	//	import Contents from "./Contents";
+	import { Toast, Indicator,MessageBox} from "mint-ui";
 
 	let topArr = [{ //第一个参数
 		icon: "", //iconfont图标
@@ -101,16 +97,23 @@
 				autoplayDisableOnInteraction: false,
 				pagination: '.swiper-pagination',
 			});
-
-			this.$http.get('/static/state/state.json').then(response => {
+			Indicator.open({
+				text: '加载中...',
+				spinnerType: 'fading-circle'
+			});
+			this.$http.get('/youwutuphp/youwutu/integral/getIntegralData').then(response => {
 				// get body data
-				console.log(response);
-				console.log(eval(response.bodyText));
-				this.list = eval(response.bodyText);
-
+				if(response.body.code === 0){
+					this.list = response.body.data;
+				}
+				Toast({
+					message: response.body.message,
+					position: 'middle',
+					duration: 3000
+				});
+				Indicator.close();
 			}, response => {
-				// error callback
-				console.log("error")
+				Indicator.close();
 			});
 		}
 	}

@@ -145,23 +145,25 @@
 		},
 		methods: {
 			getData: function() {
-				this.$http.get('/youwutu/getpro/getProList?page=3', {
+				
+				this.$http.get('/youwutuphp/youwutu/getpro/getProList', {
 					params: {
 						type: this.type,
 						page: this.page
 					}
 				}).then(response => {
-					console.log(response.body);
-					// console.log(eval(response.bodyText));
-					// this.list =eval(response.bodyText);
 					if(response.body.code === 0) {
 						this.proList = this.proList.concat(response.body.data)
 					} else {
 						this.proList = []
 					}
+					Toast({
+						message: response.body.message,
+						position: 'middle',
+						duration: 3000
+					});
 				}, response => {
-					// error callback
-					console.log("error")
+					
 				});
 			},
 			selected: function(listName) {

@@ -106,7 +106,7 @@
 					text: '加载中...',
 					spinnerType: 'fading-circle'
 				});
-				this.$http.get('/youwutu/getpro/getProList', {
+				this.$http.get('/youwutuphp/youwutu/getpro/getProList', {
 					params: {
 						type: this.type,
 						page: this.page
@@ -150,7 +150,7 @@
 				}
 				let proid = e.target.getAttribute('data-proid');
 				//添加到数据库中
-				this.$http.post('/youwutu/cart/insertToCart',{proid:proid}).then(res=>{
+				this.$http.post('/youwutuphp/youwutu/cart/insertToCart',{proid:proid}).then(res=>{
 					Toast({
 						message: res.body.message,
 						position: 'middle',
@@ -172,7 +172,7 @@
 		beforeMount: function() {
 			//Dom加载前自动调用
 			var _this = this;
-			this.$http.get("/youwutu/cart/getCount").then(res=>{
+			this.$http.get("/youwutuphp/youwutu/cart/getCount").then(res=>{
 //				console.log(res);
 				_this.cartList = res.body.data;
 //				console.log(_this.cartList)

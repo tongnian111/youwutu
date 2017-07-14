@@ -75,7 +75,7 @@
 			},
 			checkUsername:function(){
 				let _this = this;
-				this.$http.post("/youwutu/user/checkuser",{username:this.username}).then(function(res){
+				this.$http.post("/youwutuphp/youwutu/user/checkuser",{username:this.username}).then(function(res){
 					if(res.body.code===0){
 						_this.flag.splice(0,1,1);
 					}else{
@@ -114,7 +114,7 @@
 					spinnerType: 'fading-circle'
 				});
 				var _this = this;
-				this.$http.post("/youwutu/user/register",{username:this.username,password:this.password,nickname:this.nickName}).then(function(res){
+				this.$http.post("/youwutuphp/youwutu/user/register",{username:this.username,password:this.password,nickname:this.nickName}).then(function(res){
 					console.log(res);
 					if(res.body.code === 0){
 						_this.$router.push('/my');

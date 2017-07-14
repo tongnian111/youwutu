@@ -115,7 +115,7 @@
 					spinnerType: 'fading-circle'
 				});
 				var _this = this;
-				this.$http.get('/youwutu/shouye/getDefaultInfo').then(res => {
+				this.$http.get('/youwutuphp/youwutu/shouye/getDefaultInfo').then(res => {
 					if(res.body.code === 0){
 						_this.dataList = res.body.data;
 						//bannder

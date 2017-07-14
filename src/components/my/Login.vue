@@ -81,7 +81,7 @@
 				}
 			},login:function(){
 				let _this = this;
-				this.$http.post("/youwutu/user/login",{username:this.username,password:this.password}).then(function(res){
+				this.$http.post("/youwutuphp/youwutu/user/login",{username:this.username,password:this.password}).then(function(res){
 					if(res.body.code == 0){
 						_this.$router.go(-1);
 					}

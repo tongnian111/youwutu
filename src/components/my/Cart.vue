@@ -85,7 +85,7 @@
 					}
 					this.list[index].count -= 1
 				}
-				this.$http.post("/youwutu/cart/insertToCart",{proid:proid,count:this.list[index].count,type:'update'}).then(res=>{
+				this.$http.post("/youwutuphp/youwutu/cart/insertToCart",{proid:proid,count:this.list[index].count,type:'update'}).then(res=>{
 					if(res.body.code !==0){
 						Toast({
 							message: "添加失败！",
@@ -103,7 +103,7 @@
 		beforeMount: function() {
 			//Dom加载前自动调用
 			var _this = this;
-			this.$http.get("/youwutu/cart/getCartList").then(res=>{
+			this.$http.get("/youwutuphp/youwutu/cart/getCartList").then(res=>{
 //				console.log(res)
 				if(res.body.code === 0){
 					_this.list = res.body.data

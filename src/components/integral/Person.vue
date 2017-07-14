@@ -36,7 +36,7 @@
   import Vue from 'vue';
   import { Progress } from 'mint-ui';
 
-Vue.component(Progress.name, Progress);
+ Vue.component(Progress.name, Progress);
 
 let slideNav = [{
 		"name": "所有",
@@ -121,7 +121,7 @@ export default {
   },
   methods:{
     getData:function(){
-      this.$http.get('/youwutu/getpro/getProList?page=3',{params:{type:this.type,page:this.page}}).then(response => {
+      this.$http.get('/youwutuphp/youwutu/getpro/getProList',{params:{type:this.type,page:this.page}}).then(response => {
        console.log(response.body);
         // console.log(eval(response.bodyText));
       // this.list =eval(response.bodyText);

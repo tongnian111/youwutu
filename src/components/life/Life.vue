@@ -102,9 +102,17 @@
 					text: '加载中...',
 					spinnerType: 'fading-circle'
 				});
+				var timeoutTimer = setTimeout(function(){
+					Indicator.close();
+					Toast({
+						message: "加载超时，刷新重试!",
+						position: 'middle',
+						duration: 3000
+					});
+				},15000)
 				var that = this;
-				this.$http.get('/youwutu/life/getLifeData',{params:{page:page}}).then(response => {
-					//					console.log(response);
+				this.$http.get('/youwutuphp/youwutu/life/getLifeData',{params:{page:page}}).then(response => {
+					//console.log(response);
 					let data = response.body.data;
 					let len = data.length;
 					that.headInfo.splice(0);
@@ -122,6 +130,7 @@
 						position: 'middle',
 						duration: 3000
 					});
+					clearTimeout(timeoutTimer);
 				}, response => {
 					Indicator.close();
 				});

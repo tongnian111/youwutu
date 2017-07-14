@@ -76,7 +76,7 @@
 				let _this = this;
 				MessageBox.confirm('确定执行此操作?', '提示').then(action => {
 					if(action) {
-						this.$http.post("/youwutu/user/loginOut", {
+						this.$http.post("/youwutuphp/youwutu/user/loginOut", {
 							uid: this.$cookie.get('uid')
 						}).then(function(res) {
 							_this.checkLogin();
